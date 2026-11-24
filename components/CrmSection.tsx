@@ -21,7 +21,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
     setTimeout(() => setCopiedLink(false), 2200);
   };
 
-  const filteredCases = caseFilter 
+  const filteredCases = caseFilter
     ? SAMPLE_CASES.filter(c => c.client.toLowerCase().includes(caseFilter.toLowerCase()) || c.area.toLowerCase().includes(caseFilter.toLowerCase()))
     : SAMPLE_CASES;
 
@@ -33,7 +33,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
       <div className="absolute inset-0 bg-[radial-gradient(#1E3A8A_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header: Title and Value Prop */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
           <div className="lg:col-span-7 space-y-5">
@@ -93,7 +93,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
           {/* Right Column: CRM Fast Stats Cards */}
           <div className="lg:col-span-5 grid grid-cols-2 gap-4">
             {CRM_STATS.map((stat, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="p-5 rounded-2xl bg-gradient-to-b from-slate-900/90 to-[#0F1A3A]/90 border border-slate-700/70 backdrop-blur-md shadow-lg"
               >
@@ -109,7 +109,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
 
         {/* INTERACTIVE CRM UI MOCKUP */}
         <div className="mt-6 rounded-3xl bg-slate-950/95 border border-slate-700/80 shadow-2xl overflow-hidden backdrop-blur-xl">
-          
+
           {/* Mockup Top Window Bar */}
           <div className="bg-[#0e172e] px-4 sm:px-6 py-3.5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-3">
@@ -147,22 +147,20 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
             <div className="flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
               <button
                 onClick={() => setActiveTab('resumen')}
-                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                  activeTab === 'resumen'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-                }`}
+                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'resumen'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  }`}
               >
                 Resumen Ejecutivo
               </button>
 
               <button
                 onClick={() => setActiveTab('casos')}
-                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                  activeTab === 'casos'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-                }`}
+                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'casos'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  }`}
               >
                 Mis Casos (4 Activos)
               </button>
@@ -175,7 +173,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                 }`}
               >
-                Red de Afiliados & Comisiones
+                Red de Afiliados y Comisiones
               </button>
             </div>
 
@@ -191,7 +189,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
 
           {/* Mockup Tab Content Area */}
           <div className="p-4 sm:p-6 lg:p-8 bg-[#090f21]">
-            
+
             {/* TAB 1: RESUMEN EJECUTIVO */}
             {activeTab === 'resumen' && (
               <div className="space-y-6 animate-in fade-in duration-200">
@@ -472,8 +470,8 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
               <span>Base de Datos Cifrada OIKONOMOS Core • Servidores Dedicados Tier IV</span>
             </div>
             <div className="flex items-center gap-4">
-              <button 
-                onClick={onOpenLoginModal} 
+              <button
+                onClick={onOpenLoginModal}
                 className="text-blue-400 hover:text-blue-300 font-semibold"
               >
                 Abrir en Pantalla Completa →
