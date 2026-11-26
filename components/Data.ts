@@ -26,7 +26,7 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     accentColor: 'amber',
     leaderName: 'Carlos Campos',
     leaderTitle: 'Consultor Líder en Economía',
-    leaderPhoto: '/carlos-campos.png',
+    leaderPhoto: '/carlos-campos.png?v=2',
     deliverables: [
       'Valoración de empresas y activos intangibles',
       'Análisis de sensibilidad y escenarios de riesgo',
