@@ -2,13 +2,15 @@
 
 import React from 'react';
 import { CONSULTING_AREAS } from './Data';
+import { NavTabId, NAV_LINKS } from './Navbar';
 
 interface FooterProps {
   onOpenLoginModal: () => void;
   onSelectService: (serviceId: string) => void;
+  onSelectTab?: (tabId: NavTabId) => void;
 }
 
-export default function Footer({ onOpenLoginModal, onSelectService }: FooterProps) {
+export default function Footer({ onOpenLoginModal, onSelectService, onSelectTab }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -43,8 +45,27 @@ export default function Footer({ onOpenLoginModal, onSelectService }: FooterProp
             </div>
           </div>
 
-          {/* Quick Links: 7 Consulting Areas (4 cols) */}
-          <div className="lg:col-span-4 space-y-3">
+          {/* Quick Links: Navegación de Pestañas (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
+              Pestañas
+            </h4>
+            <ul className="space-y-2 text-xs">
+              {NAV_LINKS.map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => onSelectTab && onSelectTab(link.id)}
+                    className="text-slate-400 hover:text-white transition-colors text-left cursor-pointer"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links: 7 Consulting Areas (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
               Áreas de Consultoría
             </h4>
@@ -52,8 +73,11 @@ export default function Footer({ onOpenLoginModal, onSelectService }: FooterProp
               {CONSULTING_AREAS.map((area) => (
                 <li key={area.id}>
                   <button
-                    onClick={() => onSelectService(area.id)}
-                    className="text-slate-400 hover:text-white transition-colors text-left cursor-pointer"
+                    onClick={() => {
+                      if (onSelectTab) onSelectTab('consultoria');
+                      onSelectService(area.id);
+                    }}
+                    className="text-slate-400 hover:text-white transition-colors text-left cursor-pointer truncate max-w-full block"
                   >
                     {area.name}
                   </button>
@@ -62,8 +86,8 @@ export default function Footer({ onOpenLoginModal, onSelectService }: FooterProp
             </ul>
           </div>
 
-          {/* Direct Contact & Locations (4 cols) */}
-          <div className="lg:col-span-4 space-y-3">
+          {/* Direct Contact & Locations (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
               Contacto Corporativo
             </h4>
@@ -82,7 +106,7 @@ export default function Footer({ onOpenLoginModal, onSelectService }: FooterProp
               </div>
               <div>
                 <span className="text-slate-300 font-semibold">Cobertura: </span>
-                Red Global de Afiliados & Aliados Estratégicos
+                Red Global de Afiliados y Aliados Estratégicos
               </div>
             </div>
 

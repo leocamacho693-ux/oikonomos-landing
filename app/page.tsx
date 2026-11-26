@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
+import React, { useState, useEffect } from 'react';
+import Navbar, { NavTabId, NAV_LINKS } from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import CorporateIdentity from '@/components/CorporateIdentity';
 import ConsultingServices from '@/components/ConsultingServices';
@@ -12,9 +12,43 @@ import Footer from '@/components/Footer';
 import CrmLoginModal from '@/components/CrmLoginModal';
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<NavTabId>('inicio');
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [selectedAreaForContact, setSelectedAreaForContact] = useState<string | undefined>(undefined);
   const [contactProfile, setContactProfile] = useState<'consulting' | 'affiliate'>('consulting');
+
+  // Sincronizar URL hash con la pestaña activa
+  useEffect(() => {
+    const syncHashWithTab = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#identidad' || hash === '#identidad-corporativa') {
+        setActiveTab('identidad');
+      } else if (hash === '#areas-consultoria' || hash === '#consultoria') {
+        setActiveTab('consultoria');
+      } else if (hash === '#ecosistema-crm' || hash === '#crm') {
+        setActiveTab('crm');
+      } else if (hash === '#afiliados' || hash === '#modelo-afiliados') {
+        setActiveTab('afiliados');
+      } else if (hash === '#contacto') {
+        setActiveTab('contacto');
+      } else if (hash === '#inicio') {
+        setActiveTab('inicio');
+      }
+    };
+
+    syncHashWithTab();
+    window.addEventListener('hashchange', syncHashWithTab);
+    return () => window.removeEventListener('hashchange', syncHashWithTab);
+  }, []);
+
+  const handleSelectTab = (tabId: NavTabId) => {
+    setActiveTab(tabId);
+    const match = NAV_LINKS.find((l) => l.id === tabId);
+    if (match) {
+      window.history.pushState(null, '', match.hash);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleOpenLoginModal = () => {
     setLoginModalOpen(true);
@@ -27,76 +61,92 @@ export default function Home() {
   const handleNavigateToContact = (areaId?: string, profile: 'consulting' | 'affiliate' = 'consulting') => {
     setSelectedAreaForContact(areaId);
     setContactProfile(profile);
-    const contactElem = document.getElementById('contacto');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    handleSelectTab('contacto');
   };
 
   const handleExploreServices = () => {
-    const servicesElem = document.getElementById('areas-consultoria');
-    if (servicesElem) {
-      servicesElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    handleSelectTab('consultoria');
   };
 
   const handleExploreCrm = () => {
-    const crmElem = document.getElementById('ecosistema-crm');
-    if (crmElem) {
-      crmElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    handleSelectTab('crm');
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-800">
-      {/* Fixed Glassmorphism Navbar */}
+      {/* Fixed Glassmorphism Navbar con pestañas interactivas */}
       <Navbar
+        activeTab={activeTab}
+        onSelectTab={handleSelectTab}
         onOpenLoginModal={handleOpenLoginModal}
         onNavigateToContact={handleNavigateToContact}
       />
 
-      {/* Main Page Flow */}
+      {/* Main Content por Pestañas */}
       <main className="flex-grow">
-        {/* 1. Hero Section */}
-        <Hero
-          onExploreServices={handleExploreServices}
-          onExploreCrm={handleExploreCrm}
-          onOpenLoginModal={handleOpenLoginModal}
-        />
+        {/* 1. Inicio / Hero */}
+        {activeTab === 'inicio' && (
+          <Hero
+            onExploreServices={handleExploreServices}
+            onExploreCrm={handleExploreCrm}
+            onOpenLoginModal={handleOpenLoginModal}
+          />
+        )}
 
-        {/* 2. Identidad Corporativa & Propósito Institucional */}
-        <CorporateIdentity
-          onExploreServices={handleExploreServices}
-          onNavigateToContact={() => handleNavigateToContact(undefined, 'consulting')}
-        />
+        {/* 2. Identidad Corporativa */}
+        {activeTab === 'identidad' && (
+          <div className="pt-16 sm:pt-20">
+            <CorporateIdentity
+              onExploreServices={handleExploreServices}
+              onNavigateToContact={() => handleNavigateToContact(undefined, 'consulting')}
+            />
+          </div>
+        )}
 
-        {/* 3. 7 Consulting Areas Grid */}
-        <ConsultingServices
-          onSelectService={(areaId) => handleNavigateToContact(areaId, 'consulting')}
-        />
+        {/* 3. 7 Áreas de Consultoría */}
+        {activeTab === 'consultoria' && (
+          <div className="pt-16 sm:pt-20">
+            <ConsultingServices
+              onSelectService={(areaId) => handleNavigateToContact(areaId, 'consulting')}
+            />
+          </div>
+        )}
 
-        {/* 3. Deep Dark CRM Ecosystem Section with Interactive Mockup */}
-        <CrmSection
-          onOpenLoginModal={handleOpenLoginModal}
-          onRequestAffiliation={() => handleNavigateToContact(undefined, 'affiliate')}
-        />
+        {/* 4. Ecosistema CRM */}
+        {activeTab === 'crm' && (
+          <div className="pt-16 sm:pt-20">
+            <CrmSection
+              onOpenLoginModal={handleOpenLoginModal}
+              onRequestAffiliation={() => handleNavigateToContact(undefined, 'affiliate')}
+            />
+          </div>
+        )}
 
-        {/* 4. 3-Step Methodology Section */}
-        <HowItWorks
-          onStartWorkflow={() => handleNavigateToContact(undefined, 'consulting')}
-        />
+        {/* 5. Modelo de Afiliados */}
+        {activeTab === 'afiliados' && (
+          <div className="pt-16 sm:pt-20">
+            <HowItWorks
+              onStartWorkflow={() => handleNavigateToContact(undefined, 'affiliate')}
+            />
+          </div>
+        )}
 
-        {/* 5. Contact & Conversion Section */}
-        <ContactSection
-          selectedAreaFromParent={selectedAreaForContact}
-          defaultProfile={contactProfile}
-        />
+        {/* 6. Contacto y Diagnóstico */}
+        {activeTab === 'contacto' && (
+          <div className="pt-16 sm:pt-20">
+            <ContactSection
+              selectedAreaFromParent={selectedAreaForContact}
+              defaultProfile={contactProfile}
+            />
+          </div>
+        )}
       </main>
 
-      {/* 6. Corporate Footer */}
+      {/* Corporate Footer */}
       <Footer
         onOpenLoginModal={handleOpenLoginModal}
         onSelectService={(areaId) => handleNavigateToContact(areaId, 'consulting')}
+        onSelectTab={handleSelectTab}
       />
 
       {/* Interactive CRM Modal */}

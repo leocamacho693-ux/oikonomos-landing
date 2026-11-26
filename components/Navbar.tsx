@@ -3,12 +3,36 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
+export type NavTabId = 'inicio' | 'identidad' | 'consultoria' | 'crm' | 'afiliados' | 'contacto';
+
+export interface NavLinkItem {
+  id: NavTabId;
+  name: string;
+  hash: string;
+}
+
+export const NAV_LINKS: NavLinkItem[] = [
+  { id: 'inicio', name: 'Inicio', hash: '#inicio' },
+  { id: 'identidad', name: 'Identidad', hash: '#identidad' },
+  { id: 'consultoria', name: 'Áreas de Consultoría', hash: '#areas-consultoria' },
+  { id: 'crm', name: 'Ecosistema CRM', hash: '#ecosistema-crm' },
+  { id: 'afiliados', name: 'Afiliados', hash: '#afiliados' },
+  { id: 'contacto', name: 'Contacto', hash: '#contacto' },
+];
+
 interface NavbarProps {
+  activeTab: NavTabId;
+  onSelectTab: (tabId: NavTabId) => void;
   onOpenLoginModal: () => void;
   onNavigateToContact: (areaId?: string, profile?: 'consulting' | 'affiliate') => void;
 }
 
-export default function Navbar({ onOpenLoginModal, onNavigateToContact }: NavbarProps) {
+export default function Navbar({
+  activeTab,
+  onSelectTab,
+  onOpenLoginModal,
+  onNavigateToContact,
+}: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,21 +44,9 @@ export default function Navbar({ onOpenLoginModal, onNavigateToContact }: Navbar
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Identidad', href: '#identidad-corporativa' },
-    { name: 'Áreas de Consultoría', href: '#areas-consultoria' },
-    { name: 'Ecosistema CRM', href: '#ecosistema-crm' },
-    { name: 'Afiliados', href: '#modelo-afiliados' },
-    { name: 'Contacto', href: '#contacto' },
-  ];
-
-  const handleLinkClick = (href: string) => {
+  const handleTabClick = (tabId: NavTabId) => {
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    onSelectTab(tabId);
   };
 
   return (
@@ -43,21 +55,19 @@ export default function Navbar({ onOpenLoginModal, onNavigateToContact }: Navbar
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
             ? 'bg-[#070E22]/95 backdrop-blur-md shadow-lg py-1.5 border-b border-slate-800'
-            : 'bg-[#070E22]/85 backdrop-blur-md py-2 border-b border-white/10'
+            : 'bg-[#070E22]/90 backdrop-blur-md py-2 border-b border-white/10'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Grupo Izquierdo: Logo con fondo blanco y enlaces de navegación unidos estrechamente */}
-            <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4">
-              {/* Logo Oficial OIKONOMOS (Fondo blanco, letras negras para máximo resalte) */}
-              <a 
-                href="#inicio" 
-                className="flex items-center group focus:outline-none py-0.5 mr-1"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick('#inicio');
-                }}
+            {/* Grupo Izquierdo: Logo con fondo blanco y pestañas de navegación */}
+            <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-5">
+              {/* Logo Oficial OIKONOMOS */}
+              <button 
+                type="button"
+                onClick={() => handleTabClick('inicio')}
+                className="flex items-center group focus:outline-none py-0.5 mr-1 cursor-pointer"
+                title="Volver a Inicio"
               >
                 <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-white shadow-md shadow-black/30 group-hover:shadow-xl group-hover:scale-105 transition-all duration-200 border border-white/90">
                   <img 
@@ -66,24 +76,30 @@ export default function Navbar({ onOpenLoginModal, onNavigateToContact }: Navbar
                     className="h-8 sm:h-8.5 md:h-9 w-auto object-contain" 
                   />
                 </div>
-              </a>
+              </button>
 
-              {/* Desktop Navigation Links unidos directamente junto a Inicio */}
-              <nav className="hidden lg:flex items-center gap-5 xl:gap-6">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick(link.href);
-                    }}
-                    className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group py-0.5"
-                  >
-                    {link.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-amber-400 transition-all duration-300 group-hover:w-full rounded-full" />
-                  </a>
-                ))}
+              {/* Desktop Navigation Tabs */}
+              <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2">
+                {NAV_LINKS.map((link) => {
+                  const isActive = activeTab === link.id;
+                  return (
+                    <button
+                      key={link.id}
+                      type="button"
+                      onClick={() => handleTabClick(link.id)}
+                      className={`text-sm font-semibold transition-all duration-200 relative py-1.5 px-3 rounded-lg cursor-pointer ${
+                        isActive
+                          ? 'text-white bg-blue-600/30 border border-blue-400/50 shadow-sm shadow-blue-500/20'
+                          : 'text-slate-300 hover:text-white hover:bg-white/5 border border-transparent'
+                      }`}
+                    >
+                      {link.name}
+                      {isActive && (
+                        <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-blue-400 to-amber-400 rounded-full" />
+                      )}
+                    </button>
+                  );
+                })}
               </nav>
             </div>
 
@@ -117,7 +133,7 @@ export default function Navbar({ onOpenLoginModal, onNavigateToContact }: Navbar
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label="Abrir menú"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -138,20 +154,27 @@ export default function Navbar({ onOpenLoginModal, onNavigateToContact }: Navbar
 
           {/* Drawer Menu */}
           <div className="fixed top-[56px] left-0 right-0 bg-[#0B132B] border-b border-slate-800 shadow-2xl p-6 space-y-4 animate-in slide-in-from-top-4 duration-300 text-white">
-            <nav className="flex flex-col space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.href);
-                  }}
-                  className="flex items-center justify-between py-2 text-base font-medium text-slate-200 hover:text-white border-b border-slate-800"
-                >
-                  <span>{link.name}</span>
-                </a>
-              ))}
+            <nav className="flex flex-col space-y-2">
+              {NAV_LINKS.map((link) => {
+                const isActive = activeTab === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    type="button"
+                    onClick={() => handleTabClick(link.id)}
+                    className={`flex items-center justify-between py-2.5 px-3 rounded-xl text-base font-semibold transition-colors text-left cursor-pointer ${
+                      isActive
+                        ? 'text-white bg-blue-600/30 border border-blue-400/40'
+                        : 'text-slate-200 hover:text-white hover:bg-white/5 border border-transparent'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {isActive && (
+                      <span className="w-2 h-2 rounded-full bg-amber-400" />
+                    )}
+                  </button>
+                );
+              })}
             </nav>
 
             <div className="pt-3 space-y-2.5">
