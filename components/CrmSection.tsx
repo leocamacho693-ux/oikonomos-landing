@@ -252,7 +252,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
                     <div className="space-y-3.5 pt-2">
                       <div>
                         <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Legal & Blindaje Contractual</span>
+                          <span>Consultoría Legal y Blindaje Contractual</span>
                           <span className="font-semibold text-blue-400">94% resuelto</span>
                         </div>
                         <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
@@ -262,7 +262,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
 
                       <div>
                         <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Agropecuaria & Costos de Cosecha</span>
+                          <span>Consultoría Agropecuaria y Costos de Cosecha</span>
                           <span className="font-semibold text-emerald-400">88% resuelto</span>
                         </div>
                         <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
@@ -272,7 +272,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
 
                       <div>
                         <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Contable & Auditoría Fiscal</span>
+                          <span>Consultoría Contable y Auditoría Fiscal</span>
                           <span className="font-semibold text-amber-400">91% resuelto</span>
                         </div>
                         <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
@@ -282,7 +282,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
 
                       <div>
                         <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Ambiental & Certificaciones ESG</span>
+                          <span>Consultoría Ambiental y Certificaciones ESG</span>
                           <span className="font-semibold text-teal-400">82% resuelto</span>
                         </div>
                         <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">

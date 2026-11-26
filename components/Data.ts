@@ -101,9 +101,9 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     id: 'economica',
     name: 'Consultoría Económica',
     shortName: 'Económica',
-    category: 'Estrategia & Valuación',
-    tagline: 'Modelación macro y microeconómica para inversión',
-    description: 'Análisis macro y microeconómico, valoración rigurosa de empresas (DCF), estudios econométricos de mercado y diseño de estrategias de expansión de capital.',
+    category: 'Estrategia y Valuación',
+    tagline: 'Liderada por Carlos Campos | Modelación macro y microeconómica',
+    description: 'Análisis macro y microeconómico, valoración rigurosa de empresas (DCF), estudios econométricos de mercado y diseño de estrategias de expansión de capital bajo la dirección del consultor Carlos Campos.',
     iconName: 'BarChart3',
     accentColor: 'amber',
     deliverables: [
@@ -188,11 +188,11 @@ export const SAMPLE_CASES = [
   {
     id: 'CS-4081',
     client: 'BioEnergías del Valle',
-    area: 'Ambiental & Económica',
+    area: 'Consultoría Económica',
     status: 'Auditoría de Campo',
     statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     progress: 45,
-    lead: 'Ing. Carlos Valencia',
+    lead: 'Carlos Campos',
     lastUpdate: 'Ayer'
   },
   {
