@@ -12,6 +12,7 @@ export interface ConsultingArea {
   leaderName?: string;
   leaderTitle?: string;
   leaderPhoto?: string;
+  leaderCredentials?: string[];
 }
 
 export const CONSULTING_AREAS: ConsultingArea[] = [
@@ -19,14 +20,21 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     id: 'economica',
     name: 'Consultoría Económica',
     shortName: 'Económica',
-    category: 'Estrategia y Valuación',
+    category: 'Estrategia, Finanzas y Valuación',
     tagline: 'Modelación macro y microeconómica para inversión',
     description: 'Análisis macro y microeconómico, valoración rigurosa de empresas (DCF), estudios econométricos de mercado y diseño de estrategias de expansión de capital.',
     iconName: 'BarChart3',
     accentColor: 'amber',
     leaderName: 'Carlos Campos',
-    leaderTitle: 'Consultor Líder en Economía',
+    leaderTitle: 'Consultor Líder en Economía y Finanzas',
     leaderPhoto: '/carlos-campos.png?v=2',
+    leaderCredentials: [
+      '🎓 US Economist & Internationalist | Northeastern University',
+      '🎓 VE President | SIRCA UNET',
+      '🚗 CEO AutoSalud S.A.',
+      '⚙️ CFO Aceta C.A.',
+      '📍 Táchira, VE',
+    ],
     deliverables: [
       'Valoración de empresas y activos intangibles',
       'Análisis de sensibilidad y escenarios de riesgo',
