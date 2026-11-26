@@ -103,20 +103,17 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
             return (
               <div
                 key={area.id}
-                className={`group relative rounded-2xl bg-white hover:bg-gradient-to-b hover:from-white hover:to-slate-50 border border-slate-200/90 shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 hover:border-blue-300 transition-all duration-300 flex flex-col justify-between overflow-hidden p-6 sm:p-7 ${
+                className={`group relative rounded-2xl bg-white hover:bg-slate-50/40 border border-slate-200/90 shadow-sm hover:shadow-xl hover:shadow-blue-900/10 hover:border-blue-300 transition-all duration-300 flex flex-col justify-between overflow-hidden p-6 sm:p-7 ${
                   isFeaturedLast ? 'lg:col-span-3 lg:max-w-2xl lg:mx-auto w-full' : ''
                 }`}
               >
-                {/* Accent top gradient line */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1E3A8A] via-[#0284C7] to-amber-500 opacity-80 group-hover:opacity-100 transition-opacity" />
+                {/* Accent top line - Un solo color sólido */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-[#1E3A8A] opacity-90 group-hover:opacity-100 transition-opacity" />
 
                 <div>
-                  {/* Category and Index Row */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-mono font-extrabold bg-gradient-to-r from-blue-700 to-indigo-600 bg-clip-text text-transparent bg-blue-50/80 px-2.5 py-1 rounded-md border border-blue-200/60">
-                      0{index + 1}
-                    </span>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600 bg-slate-100/90 px-2.5 py-1 rounded-md">
+                  {/* Category Row - Sin números */}
+                  <div className="mb-4">
+                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-slate-700 bg-slate-100 px-3 py-1 rounded-md border border-slate-200/80">
                       {area.category}
                     </span>
                   </div>
@@ -129,17 +126,23 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
                     {area.tagline}
                   </div>
 
-                  {/* Leader Profile Badge & Credentials */}
-                  {area.leaderPhoto && (
-                    <div className="p-3.5 rounded-2xl bg-gradient-to-br from-blue-50/90 via-slate-50 to-amber-50/40 border border-blue-200/80 mb-4 shadow-xs">
+                  {/* Leader Profile Badge - Un solo color, sin degradados ni emojis */}
+                  {area.leaderName && (
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 mb-4 shadow-2xs">
                       <div className="flex items-center gap-3">
-                        <img
-                          src={area.leaderPhoto}
-                          alt={area.leaderName}
-                          className="w-12 h-12 rounded-full object-cover border-2 border-amber-400 shadow-sm flex-shrink-0"
-                        />
+                        {area.leaderPhoto ? (
+                          <img
+                            src={area.leaderPhoto}
+                            alt={area.leaderName}
+                            className="w-12 h-12 rounded-full object-cover border-2 border-slate-300 flex-shrink-0"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-blue-100 text-[#1E3A8A] flex items-center justify-center font-bold text-sm border-2 border-blue-200 flex-shrink-0">
+                            {area.leaderName.split(' ').map(n => n[0]).slice(0, 2).join('')}
+                          </div>
+                        )}
                         <div className="min-w-0">
-                          <div className="text-[10px] font-extrabold text-amber-800 uppercase tracking-wider">
+                          <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                             {area.leaderTitle || 'Consultor Líder'}
                           </div>
                           <div className="text-sm font-bold text-[#0B132B] truncate">
@@ -148,11 +151,12 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
                         </div>
                       </div>
 
-                      {/* Credenciales y trayectoria */}
+                      {/* Credenciales y trayectoria - Sin emojis */}
                       {area.leaderCredentials && area.leaderCredentials.length > 0 && (
-                        <div className="pt-2.5 mt-2.5 border-t border-blue-200/60 space-y-1.5 text-xs text-slate-700">
+                        <div className="pt-2.5 mt-2.5 border-t border-slate-200 space-y-1.5 text-xs text-slate-600">
                           {area.leaderCredentials.map((cred, idx) => (
-                            <div key={idx} className="flex items-start gap-1.5 leading-snug font-medium">
+                            <div key={idx} className="flex items-start gap-2 leading-snug">
+                              <span className="text-[#1E3A8A] font-bold">•</span>
                               <span>{cred}</span>
                             </div>
                           ))}
@@ -173,7 +177,7 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
                     </div>
                     {area.deliverables.map((deliv, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 mt-1.5 flex-shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A] mt-1.5 flex-shrink-0" />
                         <span>{deliv}</span>
                       </div>
                     ))}
@@ -198,8 +202,8 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
           })}
         </div>
 
-        {/* Global Multi-Area Banner */}
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-900 to-[#0B132B] text-white p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        {/* Global Multi-Area Banner - Un solo color sólido */}
+        <div className="mt-12 rounded-2xl bg-[#0B132B] border border-slate-800 text-white p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="space-y-1 text-center md:text-left">
             <h4 className="text-lg sm:text-xl font-bold text-white">
               ¿Tu empresa requiere un diagnóstico integral en múltiples áreas?

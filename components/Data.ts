@@ -29,11 +29,11 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     leaderTitle: 'Consultor Líder en Economía y Finanzas',
     leaderPhoto: '/carlos-campos.png?v=2',
     leaderCredentials: [
-      '🎓 US Economist & Internationalist | Northeastern University',
-      '🎓 VE President | SIRCA UNET',
-      '🚗 CEO AutoSalud S.A.',
-      '⚙️ CFO Aceta C.A.',
-      '📍 Táchira, VE',
+      'US Economist & Internationalist | Northeastern University',
+      'VE President | SIRCA UNET',
+      'CEO AutoSalud S.A.',
+      'CFO Aceta C.A.',
+      'Táchira, VE',
     ],
     deliverables: [
       'Valoración de empresas y activos intangibles',
@@ -52,6 +52,9 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     description: 'Optimización de procesos internos, estructura organizacional, mejora continua, gobernanza corporativa y maximización de la productividad operativa.',
     iconName: 'Building2',
     accentColor: 'blue',
+    leaderName: 'Fernando Jürgensen',
+    leaderTitle: 'Consultor Líder en Gestión y Operaciones',
+    leaderPhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop',
     deliverables: [
       'Manuales de procesos y BPMN',
       'Matriz de roles y gobierno corporativo',
@@ -69,6 +72,9 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     description: 'Gestión financiera, productividad, costos de producción, trazabilidad de cosechas y modernización tecnológica para el sector agroindustrial y rural.',
     iconName: 'Tractor',
     accentColor: 'emerald',
+    leaderName: 'Ing. Roberto Valderrama',
+    leaderTitle: 'Consultor Especialista Agroindustrial',
+    leaderPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop',
     deliverables: [
       'Estructuración de costos por hectárea/lote',
       'Planes de tecnificación e irrigación',
@@ -86,6 +92,9 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     description: 'Cumplimiento normativo, evaluación de impacto ambiental, certificaciones de carbono, transición energética y gestión responsable de recursos hídricos y residuos.',
     iconName: 'Leaf',
     accentColor: 'emerald',
+    leaderName: 'Dra. Valeria Mendoza',
+    leaderTitle: 'Consultora Especialista en Sostenibilidad y ESG',
+    leaderPhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop',
     deliverables: [
       'Estudios de Impacto Ambiental (EIA)',
       'Estrategia de Huella de Carbono e Hídrica',
@@ -103,6 +112,9 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     description: 'Auditoría integral, estructuración financiera, cumplimiento tributario riguroso, adopción NIIF/IFRS y control contable para toma de decisiones directivas.',
     iconName: 'Calculator',
     accentColor: 'amber',
+    leaderName: 'Lcda. Mariana Colmenares',
+    leaderTitle: 'Consultora Líder en Finanzas y Tributos',
+    leaderPhoto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop',
     deliverables: [
       'Planificación y optimización fiscal legal',
       'Auditoría y conciliación financiera',
@@ -120,6 +132,9 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     description: 'Posicionamiento de marca institucional, embudos de adquisición B2B/B2C, pauta de alta precisión (paid media) y estrategias de contenido orientadas a conversión.',
     iconName: 'TrendingUp',
     accentColor: 'blue',
+    leaderName: 'Lcdo. Andrés Velásquez',
+    leaderTitle: 'Consultor Líder en Growth y Marketing B2B',
+    leaderPhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop',
     deliverables: [
       'Embudos de prospección B2B automatizados',
       'Arquitectura de marca y reputación digital',
@@ -137,6 +152,9 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     description: 'Blindaje jurídico corporativo, redacción y estructuración de contratos comerciales de alta complejidad, propiedad intelectual, compliance y asesoría mercantil.',
     iconName: 'Scale',
     accentColor: 'blue',
+    leaderName: 'Abg. Gabriel Zambrano',
+    leaderTitle: 'Consultor Líder en Derecho Corporativo',
+    leaderPhoto: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop',
     deliverables: [
       'Redacción y auditoría de contratos mercantiles',
       'Estructuración corporativa y acuerdos de socios',
