@@ -95,7 +95,7 @@ export default function Navbar({
                     >
                       {link.name}
                       {isActive && (
-                        <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-blue-400 to-amber-400 rounded-full" />
+                        <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-400 rounded-full" />
                       )}
                     </button>
                   );
@@ -116,7 +116,7 @@ export default function Navbar({
               {/* Primary (Solid): Agendar Diagnóstico */}
               <button
                 onClick={() => onNavigateToContact(undefined, 'consulting')}
-                className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 shadow-md shadow-blue-950 transition-all duration-200 cursor-pointer active:scale-[0.98] border border-blue-400/30"
+                className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-950 transition-all duration-200 cursor-pointer active:scale-[0.98] border border-blue-400/30"
               >
                 Agendar Diagnóstico
               </button>

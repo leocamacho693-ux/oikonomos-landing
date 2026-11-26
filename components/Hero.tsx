@@ -156,14 +156,13 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
       {/* ===== CONTENIDO PRINCIPAL CENTRADO (MÁS CEÑIDO Y SIN VACÍOS) ===== */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
-        {/* 1. Logo Oficial OIKONOMOS Emblema Centrado (MÁS GRANDE Y PROMINENTE) */}
+        {/* 1. Logo Oficial OIKONOMOS Emblema Centrado */}
         <div className="flex flex-col items-center justify-center mb-2 sm:mb-2.5">
-          <div className="relative group inline-block">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/35 via-white/15 to-amber-500/25 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition-opacity" />
+          <div className="relative inline-block">
             <img 
               src="/logo-white.png" 
               alt="OIKONOMOS" 
-              className="relative h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain filter drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)] drop-shadow-[0_0_25px_rgba(255,255,255,0.45)] hover:scale-105 transition-transform duration-300" 
+              className="relative h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain filter drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)] hover:scale-105 transition-transform duration-300" 
             />
           </div>
         </div>
@@ -175,15 +174,15 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
               textFade ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
             }`}
           >
-            {/* Badge Dinámico Superior (Con 'y' en vez de '&') */}
+            {/* Badge Dinámico Superior */}
             <div className="inline-flex items-center px-4 py-1 rounded-full bg-blue-950/70 border border-blue-400/40 text-blue-200 text-xs sm:text-sm font-semibold shadow-xl shadow-blue-950/60 backdrop-blur-md mb-2.5 hover:border-blue-400/70 transition-colors">
               <span className="tracking-wide font-medium">{activeSlide.badge}</span>
             </div>
 
-            {/* H1 Principal Dinámico */}
+            {/* H1 Principal Dinámico en Blanco Sólido */}
             <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[48px] font-extrabold text-white tracking-tight leading-[1.14] max-w-4xl mx-auto drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
               {activeSlide.titlePrefix}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-indigo-100 to-amber-300">
+              <span className="text-white">
                 {activeSlide.titleHighlight}
               </span>{' '}
               {activeSlide.titleSuffix}
@@ -196,11 +195,11 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
           </div>
         </div>
 
-        {/* 3. Botones de Acción (CTAs) Centrados Sin Íconos (Espaciado Ceñido) */}
+        {/* 3. Botones de Acción (CTAs) Centrados Sin Degradados */}
         <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto sm:max-w-none">
           <button
             onClick={onExploreServices}
-            className="w-full sm:w-auto px-7 py-3 rounded-xl text-xs sm:text-sm md:text-base font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 shadow-xl shadow-blue-700/40 hover:shadow-2xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer border border-blue-400/40"
+            className="w-full sm:w-auto px-7 py-3 rounded-xl text-xs sm:text-sm md:text-base font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-700/40 hover:shadow-2xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer border border-blue-400/40"
           >
             Explorar Servicios
           </button>
