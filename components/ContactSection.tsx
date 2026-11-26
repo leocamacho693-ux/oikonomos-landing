@@ -324,9 +324,9 @@ export default function ContactSection({ selectedAreaFromParent, defaultProfile 
               <div className="space-y-4 text-sm text-slate-300">
                 <div className="space-y-0.5">
                   <div className="text-xs font-bold text-amber-400 uppercase tracking-wider">Ubicación</div>
-                  <div className="font-semibold text-white">Centro Financiero Corporativo</div>
-                  <div>Torre Empresarial Oikonomos, Piso 18</div>
-                  <div className="text-xs text-slate-400">Atención presencial y virtual internacional</div>
+                  <div className="font-semibold text-white">Sede Principal</div>
+                  <div>CC El Tamá, San Cristóbal, Táchira</div>
+                  <div className="text-xs text-slate-400">Atención presencial y virtual</div>
                 </div>
 
                 <div className="space-y-0.5">
