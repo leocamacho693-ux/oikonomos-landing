@@ -129,6 +129,25 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
                     {area.tagline}
                   </div>
 
+                  {/* Leader Profile Badge */}
+                  {area.leaderPhoto && (
+                    <div className="flex items-center gap-3 p-2.5 rounded-xl bg-gradient-to-r from-blue-50/90 via-slate-50 to-amber-50/50 border border-blue-200/70 mb-4 shadow-xs">
+                      <img
+                        src={area.leaderPhoto}
+                        alt={area.leaderName}
+                        className="w-12 h-12 rounded-full object-cover border-2 border-amber-400 shadow-sm flex-shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <div className="text-[10px] font-extrabold text-amber-800 uppercase tracking-wider">
+                          {area.leaderTitle || 'Consultor Líder'}
+                        </div>
+                        <div className="text-sm font-bold text-[#0B132B] truncate">
+                          {area.leaderName}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Description */}
                   <p className="text-sm text-slate-600 leading-relaxed mb-5 font-normal">
                     {area.description}

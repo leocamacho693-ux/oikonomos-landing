@@ -9,14 +9,37 @@ export interface ConsultingArea {
   accentColor: string;
   deliverables: string[];
   kpi: string;
+  leaderName?: string;
+  leaderTitle?: string;
+  leaderPhoto?: string;
 }
 
 export const CONSULTING_AREAS: ConsultingArea[] = [
   {
+    id: 'economica',
+    name: 'Consultoría Económica',
+    shortName: 'Económica',
+    category: 'Estrategia y Valuación',
+    tagline: 'Modelación macro y microeconómica para inversión',
+    description: 'Análisis macro y microeconómico, valoración rigurosa de empresas (DCF), estudios econométricos de mercado y diseño de estrategias de expansión de capital.',
+    iconName: 'BarChart3',
+    accentColor: 'amber',
+    leaderName: 'Carlos Campos',
+    leaderTitle: 'Consultor Líder en Economía',
+    leaderPhoto: '/carlos-campos.png',
+    deliverables: [
+      'Valoración de empresas y activos intangibles',
+      'Análisis de sensibilidad y escenarios de riesgo',
+      'Estudios de viabilidad para financiamiento',
+      'Modelos econométricos sectoriales'
+    ],
+    kpi: '+40M$ en operaciones estructuradas'
+  },
+  {
     id: 'administrativa',
     name: 'Consultoría Administrativa',
     shortName: 'Administrativa',
-    category: 'Gestión & Operaciones',
+    category: 'Gestión y Operaciones',
     tagline: 'Eficiencia operativa y reingeniería estructural',
     description: 'Optimización de procesos internos, estructura organizacional, mejora continua, gobernanza corporativa y maximización de la productividad operativa.',
     iconName: 'Building2',
@@ -33,7 +56,7 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     id: 'agropecuaria',
     name: 'Consultoría Agropecuaria',
     shortName: 'Agropecuaria',
-    category: 'Agrobusiness & Campo',
+    category: 'Agrobusiness y Campo',
     tagline: 'Rentabilidad y tecnificación agroindustrial',
     description: 'Gestión financiera, productividad, costos de producción, trazabilidad de cosechas y modernización tecnológica para el sector agroindustrial y rural.',
     iconName: 'Tractor',
@@ -50,7 +73,7 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     id: 'ambiental',
     name: 'Consultoría Ambiental',
     shortName: 'Ambiental',
-    category: 'Sostenibilidad & ESG',
+    category: 'Sostenibilidad y ESG',
     tagline: 'Cumplimiento normativo y sostenibilidad corporativa',
     description: 'Cumplimiento normativo, evaluación de impacto ambiental, certificaciones de carbono, transición energética y gestión responsable de recursos hídricos y residuos.',
     iconName: 'Leaf',
@@ -67,7 +90,7 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     id: 'contable',
     name: 'Consultoría Contable',
     shortName: 'Contable',
-    category: 'Finanzas & Fiscal',
+    category: 'Finanzas y Fiscal',
     tagline: 'Transparencia fiscal y salud financiera',
     description: 'Auditoría integral, estructuración financiera, cumplimiento tributario riguroso, adopción NIIF/IFRS y control contable para toma de decisiones directivas.',
     iconName: 'Calculator',
@@ -84,7 +107,7 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
     id: 'marketing-digital',
     name: 'Consultoría de Marketing Digital',
     shortName: 'Marketing Digital',
-    category: 'Growth & Comercial',
+    category: 'Growth y Comercial',
     tagline: 'Adquisición sistemática y posicionamiento de marca',
     description: 'Posicionamiento de marca institucional, embudos de adquisición B2B/B2C, pauta de alta precisión (paid media) y estrategias de contenido orientadas a conversión.',
     iconName: 'TrendingUp',
@@ -96,23 +119,6 @@ export const CONSULTING_AREAS: ConsultingArea[] = [
       'Estrategias de Inbound y Account-Based Marketing'
     ],
     kpi: '3.4x retorno de inversión (ROAS)'
-  },
-  {
-    id: 'economica',
-    name: 'Consultoría Económica',
-    shortName: 'Económica',
-    category: 'Estrategia y Valuación',
-    tagline: 'Liderada por Carlos Campos | Modelación macro y microeconómica',
-    description: 'Análisis macro y microeconómico, valoración rigurosa de empresas (DCF), estudios econométricos de mercado y diseño de estrategias de expansión de capital bajo la dirección del consultor Carlos Campos.',
-    iconName: 'BarChart3',
-    accentColor: 'amber',
-    deliverables: [
-      'Valoración de empresas y activos intangibles',
-      'Análisis de sensibilidad y escenarios de riesgo',
-      'Estudios de viabilidad para financiamiento',
-      'Modelos econométricos sectoriales'
-    ],
-    kpi: '+40M$ en operaciones estructuradas'
   },
   {
     id: 'legal',
@@ -166,26 +172,6 @@ export const CRM_STATS = [
 
 export const SAMPLE_CASES = [
   {
-    id: 'CS-4092',
-    client: 'Agropecuaria San Ignacio S.A.',
-    area: 'Agropecuaria & Contable',
-    status: 'En Implementación',
-    statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    progress: 75,
-    lead: 'Dr. Roberto Mendoza',
-    lastUpdate: 'Hace 45 min'
-  },
-  {
-    id: 'CS-4088',
-    client: 'Grupo Logístico del Norte',
-    area: 'Legal & Administrativa',
-    status: 'Dictamen Final',
-    statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-    progress: 92,
-    lead: 'Lic. Mariana Salazar',
-    lastUpdate: 'Hoy 10:15 AM'
-  },
-  {
     id: 'CS-4081',
     client: 'BioEnergías del Valle',
     area: 'Consultoría Económica',
@@ -196,9 +182,29 @@ export const SAMPLE_CASES = [
     lastUpdate: 'Ayer'
   },
   {
+    id: 'CS-4092',
+    client: 'Agropecuaria San Ignacio S.A.',
+    area: 'Agropecuaria y Contable',
+    status: 'En Implementación',
+    statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    progress: 75,
+    lead: 'Dr. Roberto Mendoza',
+    lastUpdate: 'Hace 45 min'
+  },
+  {
+    id: 'CS-4088',
+    client: 'Grupo Logístico del Norte',
+    area: 'Legal y Administrativa',
+    status: 'Dictamen Final',
+    statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+    progress: 92,
+    lead: 'Lic. Mariana Salazar',
+    lastUpdate: 'Hoy 10:15 AM'
+  },
+  {
     id: 'CS-4074',
     client: 'Fintech Nexus Latam',
-    area: 'Marketing Digital & Legal',
+    area: 'Marketing Digital y Legal',
     status: 'En Monitoreo',
     statusColor: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
     progress: 60,
@@ -210,7 +216,7 @@ export const SAMPLE_CASES = [
 export const SAMPLE_AFFILIATES = [
   {
     code: 'AF-8942',
-    name: 'Estudio Jurídico & Asociados',
+    name: 'Estudio Jurídico y Asociados',
     tier: 'Aliado Diamante',
     activeClients: 14,
     commission: '$18,450 USD',
@@ -218,18 +224,18 @@ export const SAMPLE_AFFILIATES = [
   },
   {
     code: 'AF-8920',
-    name: 'Consorcio Agronómico Central',
-    tier: 'Aliado Oro',
+    name: 'Capital & Growth Partners',
+    tier: 'Aliado Platino',
     activeClients: 9,
     commission: '$11,200 USD',
     status: 'Activo'
   },
   {
-    code: 'AF-8891',
+    code: 'AF-8905',
     name: 'Consultores Financieros Andinos',
-    tier: 'Aliado Platino',
-    activeClients: 22,
-    commission: '$29,800 USD',
+    tier: 'Aliado Oro',
+    activeClients: 5,
+    commission: '$6,800 USD',
     status: 'Activo'
   }
 ];
