@@ -74,18 +74,17 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
+          {/* Logo Oficial Centrado */}
+          <div className="flex justify-center mb-8 relative z-10">
+            <img 
+              src="/logo-white.png" 
+              alt="OIKONOMOS" 
+              className="h-14 sm:h-16 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.35)]" 
+            />
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div className="lg:col-span-8 space-y-4">
-              <div className="flex items-center gap-3.5">
-                <img 
-                  src="/logo-white.png" 
-                  alt="OIKONOMOS" 
-                  className="h-12 w-auto object-contain filter drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" 
-                />
-                <div className="inline-flex items-center text-xs font-bold text-amber-400 uppercase tracking-widest bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-                  Sinopsis Institucional
-                </div>
-              </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-snug">
                 Transformamos la complejidad del entorno en ventajas competitivas sostenibles.
               </h3>
