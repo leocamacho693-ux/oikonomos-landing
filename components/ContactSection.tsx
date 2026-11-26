@@ -141,34 +141,10 @@ export default function ContactSection({ selectedAreaFromParent, defaultProfile 
                   </div>
                 )}
 
-                {/* Profile Switcher */}
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                    1. Selecciona tu Perfil de Interés *
-                  </label>
-                  <div className="grid grid-cols-2 gap-3 p-1.5 bg-slate-100 rounded-2xl">
-                    <button
-                      type="button"
-                      onClick={() => setProfile('consulting')}
-                      className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                        profile === 'consulting'
-                          ? 'bg-[#1E3A8A] text-white shadow-md'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      Busco Consultoría para mi Empresa
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setProfile('affiliate')}
-                      className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                        profile === 'affiliate'
-                          ? 'bg-[#1E3A8A] text-white shadow-md'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      Quiero ser Afiliado / Aliado B2B
-                    </button>
+                {/* Perfil del Servicio: Exclusivo Consultoría */}
+                <div>
+                  <div className="inline-flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold bg-[#1E3A8A] text-white shadow-sm">
+                    Busco Consultoría para mi Empresa
                   </div>
                 </div>
 
@@ -176,7 +152,7 @@ export default function ContactSection({ selectedAreaFromParent, defaultProfile 
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                      2. Áreas de Consultoría Requeridas {profile === 'consulting' && '*'}
+                      1. Áreas de Consultoría Requeridas *
                     </label>
                     <button
                       type="button"
@@ -213,7 +189,7 @@ export default function ContactSection({ selectedAreaFromParent, defaultProfile 
                 {/* Contact Fields Grid */}
                 <div className="space-y-4 pt-2">
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
-                    3. Datos del Contacto & Organización *
+                    2. Datos del Contacto y Organización *
                   </label>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -289,13 +265,9 @@ export default function ContactSection({ selectedAreaFromParent, defaultProfile 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-[#1E3A8A] via-blue-700 to-indigo-800 hover:from-[#152a65] hover:to-[#0B132B] shadow-xl shadow-blue-900/25 transition-all cursor-pointer disabled:opacity-75"
+                  className="w-full py-4 px-6 rounded-xl font-bold text-white bg-[#1E3A8A] hover:bg-blue-900 shadow-xl shadow-blue-900/25 transition-all cursor-pointer disabled:opacity-75"
                 >
-                  {loading ? (
-                    'Procesando solicitud...'
-                  ) : (
-                    profile === 'consulting' ? 'Solicitar Diagnóstico Estratégico' : 'Enviar Solicitud de Afiliación'
-                  )}
+                  {loading ? 'Procesando solicitud...' : 'Solicitar Diagnóstico Estratégico'}
                 </button>
 
                 {/* Privacy note */}
