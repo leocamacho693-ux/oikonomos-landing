@@ -201,13 +201,13 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
         
         {/* 1. Logo Oficial OIKONOMOS Emblema Centrado */}
         <div className="flex flex-col items-center justify-center mb-2 sm:mb-2.5">
-          <div className="relative flex flex-col items-center">
+          <div className="relative flex flex-col items-center justify-center text-center">
             <img 
               src="/logo-white.png" 
               alt="OIKONOMOS" 
               className="relative h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain filter drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)] hover:scale-105 transition-transform duration-300" 
             />
-            <span className="text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-[0.45em] uppercase text-slate-300/90 -mt-1 sm:-mt-1.5 drop-shadow-md select-none pl-1">
+            <span className="w-full text-center text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-[0.4em] indent-[0.4em] uppercase text-slate-300/90 -mt-1 sm:-mt-1.5 drop-shadow-md select-none">
               GLOBAL
             </span>
           </div>

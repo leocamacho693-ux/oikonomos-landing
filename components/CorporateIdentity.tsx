@@ -61,12 +61,15 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* Logo Oficial Centrado */}
-          <div className="flex justify-center mb-8 relative z-10">
+          <div className="flex flex-col items-center justify-center mb-8 relative z-10 text-center">
             <img 
               src="/logo-white.png" 
               alt="OIKONOMOS" 
               className="h-14 sm:h-16 w-auto object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.35)]" 
             />
+            <span className="w-full text-center text-[10px] sm:text-[11px] font-semibold tracking-[0.4em] indent-[0.4em] uppercase text-slate-300/90 mt-1 drop-shadow-md select-none">
+              GLOBAL
+            </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
