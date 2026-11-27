@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useApp } from './AppContext';
 
 interface CorporateIdentityProps {
   onExploreServices?: () => void;
@@ -8,71 +9,56 @@ interface CorporateIdentityProps {
 }
 
 export default function CorporateIdentity({ onExploreServices, onNavigateToContact }: CorporateIdentityProps) {
-  const corporateValues = [
-    {
-      num: '01',
-      name: 'Integridad',
-      desc: 'Transparencia, ética irrestricta y confidencialidad en cada dictamen.'
-    },
-    {
-      num: '02',
-      name: 'Excelencia',
-      desc: 'Rigor técnico multidisciplinario de estándar corporativo internacional.'
-    },
-    {
-      num: '03',
-      name: 'Innovación',
-      desc: 'Metodologías ágiles potenciadas por nuestro Ecosistema CRM propietario.'
-    },
-    {
-      num: '04',
-      name: 'Visión Estratégica',
-      desc: 'Capacidad de anticipación y modelado de escenarios ante la complejidad.'
-    },
-    {
-      num: '05',
-      name: 'Compromiso País',
-      desc: 'Dedicación al desarrollo económico productivo y sostenible de Venezuela.'
-    },
-    {
-      num: '06',
-      name: 'Colaboración',
-      desc: 'Sinergia activa con nuestra red de afiliados, inversionistas y clientes.'
-    },
-    {
-      num: '07',
-      name: 'Impacto Real',
-      desc: 'Generación de valor tangible, optimización de costos y rentabilidad medible.'
-    }
+  const { lang, t } = useApp();
+
+  const corporateValues_ES = [
+    { num: '01', name: 'Integridad', desc: 'Transparencia, ética irrestricta y confidencialidad en cada dictamen.' },
+    { num: '02', name: 'Excelencia', desc: 'Rigor técnico multidisciplinario de estándar corporativo internacional.' },
+    { num: '03', name: 'Innovación', desc: 'Metodologías ágiles potenciadas por nuestro Ecosistema CRM propietario.' },
+    { num: '04', name: 'Visión Estratégica', desc: 'Capacidad de anticipación y modelado de escenarios ante la complejidad.' },
+    { num: '05', name: 'Compromiso País', desc: 'Dedicación al desarrollo económico productivo y sostenible de Venezuela.' },
+    { num: '06', name: 'Colaboración', desc: 'Sinergia activa con nuestra red de afiliados, inversionistas y clientes.' },
+    { num: '07', name: 'Impacto Real', desc: 'Generación de valor tangible, optimización de costos y rentabilidad medible.' }
   ];
 
+  const corporateValues_EN = [
+    { num: '01', name: 'Integrity', desc: 'Transparency, unyielding ethics and confidentiality in every advisory engagement.' },
+    { num: '02', name: 'Excellence', desc: 'Multidisciplinary technical rigor adhering to international corporate benchmarks.' },
+    { num: '03', name: 'Innovation', desc: 'Agile methodologies powered by our proprietary CRM Ecosystem.' },
+    { num: '04', name: 'Strategic Vision', desc: 'Proactive foresight and complex macroeconomic scenario modeling.' },
+    { num: '05', name: 'Country Commitment', desc: 'Dedication to productive and sustainable economic development in Venezuela.' },
+    { num: '06', name: 'Collaboration', desc: 'Active synergy across our network of affiliates, institutional investors and partners.' },
+    { num: '07', name: 'Tangible Impact', desc: 'Real enterprise value creation, cost optimization and measurable ROI.' }
+  ];
+
+  const corporateValues = lang === 'en' ? corporateValues_EN : corporateValues_ES;
+
   return (
-    <section id="identidad-corporativa" className="pt-14 pb-8 sm:pt-16 sm:pb-10 md:pt-18 md:pb-10 bg-white relative overflow-hidden">
+    <section id="identidad-corporativa" className="pt-14 pb-8 sm:pt-16 sm:pb-10 md:pt-18 md:pb-10 bg-white dark:bg-[#070E22] transition-colors duration-200 relative overflow-hidden">
       {/* Background Subtle Corporate Geometry */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/70 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-amber-50/50 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/70 dark:bg-blue-900/10 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-amber-50/50 dark:bg-amber-900/10 rounded-full blur-3xl pointer-events-none -z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-semibold uppercase tracking-wider">
-            Identidad y Propósito Institucional
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-300 text-xs font-semibold uppercase tracking-wider">
+            {t('identity.badge')}
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B132B] tracking-tight leading-tight">
-            Puente Estratégico entre el Capital Global y el Talento Empresarial
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B132B] dark:text-white tracking-tight leading-tight">
+            {t('identity.title')}
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Conoce los fundamentos corporativos, la visión de largo plazo y los principios éticos que rigen cada una de nuestras intervenciones consultoras.
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            {t('identity.subtitle')}
           </p>
         </div>
 
         {/* Sinopsis Highlight Box */}
-        <div className="mb-14 rounded-3xl bg-gradient-to-br from-[#0B132B] via-[#0F1E45] to-[#142654] text-white p-7 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden border border-slate-700/80">
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="mb-14 rounded-3xl bg-[#0B132B] border border-slate-700/80 text-white p-7 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* Logo Oficial Centrado */}
           <div className="flex justify-center mb-8 relative z-10">
@@ -86,20 +72,20 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div className="lg:col-span-8 space-y-4">
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-snug">
-                Transformamos la complejidad del entorno en ventajas competitivas sostenibles.
+                {t('identity.synopsis_title')}
               </h3>
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                <strong>Oikonomos</strong> es una firma de consultoría estratégica, financiera y económica que conecta a inversionistas internacionales con oportunidades en Venezuela y fortalece a las empresas venezolanas para competir globalmente. Actuamos como un puente de alto rigor técnico entre el capital internacional y el talento empresarial venezolano.
+                {t('identity.synopsis_desc')}
               </p>
             </div>
 
             {/* Posicionamiento Callout Right */}
             <div className="lg:col-span-4 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center lg:text-left space-y-3">
               <div className="text-xs font-bold uppercase tracking-wider text-blue-200">
-                Nuestro Posicionamiento
+                {t('identity.positioning_label')}
               </div>
               <div className="text-lg sm:text-xl font-bold text-white italic leading-snug">
-                «Oikonomos: conectamos Venezuela con el mundo y al mundo con Venezuela».
+                {t('identity.positioning_quote')}
               </div>
             </div>
           </div>
@@ -109,30 +95,30 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           
           {/* Card: Misión */}
-          <div className="relative rounded-3xl bg-gradient-to-br from-blue-50/70 via-white to-indigo-50/40 border border-blue-200/90 p-8 sm:p-10 hover:shadow-2xl hover:shadow-blue-500/15 hover:border-blue-400 transition-all duration-300 group overflow-hidden">
-            <div className="h-1.5 w-full bg-gradient-to-r from-blue-700 via-indigo-600 to-sky-400 absolute top-0 left-0" />
-            <div className="text-xs font-bold uppercase tracking-wider text-blue-700 mb-2">
-              Nuestra Razón de Ser
+          <div className="relative rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 hover:shadow-xl transition-all duration-300 group overflow-hidden">
+            <div className="h-1.5 w-full bg-blue-600 absolute top-0 left-0" />
+            <div className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">
+              {lang === 'en' ? 'Our Core Purpose' : 'Nuestra Razón de Ser'}
             </div>
-            <h3 className="text-2xl font-extrabold text-[#0B132B] mb-4 group-hover:text-blue-900 transition-colors">
-              Misión
+            <h3 className="text-2xl font-extrabold text-[#0B132B] dark:text-white mb-4">
+              {t('identity.mission_title')}
             </h3>
-            <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-              Impulsar el crecimiento sostenible de Venezuela mediante asesoría estratégica de clase mundial, conectando capital internacional con oportunidades de alto valor y potenciando a las organizaciones venezolanas para competir con éxito en la economía global.
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+              {t('identity.mission_desc')}
             </p>
           </div>
 
           {/* Card: Visión */}
-          <div className="relative rounded-3xl bg-gradient-to-br from-amber-50/70 via-white to-orange-50/40 border border-amber-200/90 p-8 sm:p-10 hover:shadow-2xl hover:shadow-amber-500/15 hover:border-amber-400 transition-all duration-300 group overflow-hidden">
-            <div className="h-1.5 w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 absolute top-0 left-0" />
-            <div className="text-xs font-bold uppercase tracking-wider text-amber-800 mb-2">
-              Nuestra Aspiración Futura
+          <div className="relative rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 sm:p-10 hover:shadow-xl transition-all duration-300 group overflow-hidden">
+            <div className="h-1.5 w-full bg-[#1E3A8A] absolute top-0 left-0" />
+            <div className="text-xs font-bold uppercase tracking-wider text-blue-800 dark:text-blue-400 mb-2">
+              {lang === 'en' ? 'Our Future Vision' : 'Nuestra Aspiración Futura'}
             </div>
-            <h3 className="text-2xl font-extrabold text-[#0B132B] mb-4 group-hover:text-amber-900 transition-colors">
-              Visión
+            <h3 className="text-2xl font-extrabold text-[#0B132B] dark:text-white mb-4">
+              {t('identity.vision_title')}
             </h3>
-            <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
-              Ser la principal puerta de entrada para la inversión en Venezuela y el aliado estratégico indiscutible de las empresas venezolanas que buscan crecer, innovar y competir al más alto nivel en los mercados internacionales.
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+              {t('identity.vision_desc')}
             </p>
           </div>
 
@@ -141,14 +127,14 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
         {/* Valores Corporativos (7 Cards / Grid) */}
         <div className="space-y-6">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <div className="text-xs font-bold uppercase tracking-wider text-blue-700">
-              Pilares Éticos y Operativos
+            <div className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              {lang === 'en' ? 'Ethical & Operational Pillars' : 'Pilares Éticos y Operativos'}
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B132B]">
-              Nuestros 7 Valores Fundamentales
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B132B] dark:text-white">
+              {t('identity.values_title')}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Principios inquebrantables que guían nuestras relaciones con clientes, afiliados e inversionistas.
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+              {lang === 'en' ? 'Unwavering principles guiding our relations with clients and partners.' : 'Principios inquebrantables que guían nuestras relaciones con clientes, afiliados e inversionistas.'}
             </p>
           </div>
 
@@ -156,16 +142,15 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
             {corporateValues.slice(0, 4).map((val, idx) => (
               <div 
                 key={idx}
-                className="relative p-6 rounded-2xl bg-gradient-to-b from-white to-slate-50/80 border border-slate-200/90 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 group overflow-hidden"
+                className="relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:shadow-lg transition-all duration-300 group overflow-hidden"
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="text-sm font-extrabold font-mono bg-gradient-to-r from-blue-700 to-indigo-600 bg-clip-text text-transparent mb-2">
+                <div className="text-sm font-extrabold font-mono text-blue-600 dark:text-blue-400 mb-2">
                   {val.num}
                 </div>
-                <h4 className="text-base font-bold text-[#0B132B] mb-1.5 group-hover:text-blue-900 transition-colors">
+                <h4 className="text-base font-bold text-[#0B132B] dark:text-white mb-1.5">
                   {val.name}
                 </h4>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   {val.desc}
                 </p>
               </div>
@@ -176,16 +161,15 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
             {corporateValues.slice(4, 7).map((val, idx) => (
               <div 
                 key={idx}
-                className="relative p-6 rounded-2xl bg-gradient-to-b from-white to-slate-50/80 border border-slate-200/90 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 group overflow-hidden"
+                className="relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:shadow-lg transition-all duration-300 group overflow-hidden"
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="text-sm font-extrabold font-mono bg-gradient-to-r from-blue-700 to-indigo-600 bg-clip-text text-transparent mb-2">
+                <div className="text-sm font-extrabold font-mono text-blue-600 dark:text-blue-400 mb-2">
                   {val.num}
                 </div>
-                <h4 className="text-base font-bold text-[#0B132B] mb-1.5 group-hover:text-blue-900 transition-colors">
+                <h4 className="text-base font-bold text-[#0B132B] dark:text-white mb-1.5">
                   {val.name}
                 </h4>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   {val.desc}
                 </p>
               </div>

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
+import { useApp } from './AppContext';
 
 export type NavTabId = 'inicio' | 'identidad' | 'consultoria' | 'crm' | 'afiliados' | 'contacto';
 
@@ -33,6 +34,7 @@ export default function Navbar({
   onOpenLoginModal,
   onNavigateToContact,
 }: NavbarProps) {
+  const { lang, toggleLang, theme, toggleTheme, t } = useApp();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -49,6 +51,15 @@ export default function Navbar({
     onSelectTab(tabId);
   };
 
+  const navLinks: NavLinkItem[] = [
+    { id: 'inicio', name: t('nav.inicio'), hash: '#inicio' },
+    { id: 'identidad', name: t('nav.identidad'), hash: '#identidad' },
+    { id: 'consultoria', name: t('nav.consultoria'), hash: '#areas-consultoria' },
+    { id: 'crm', name: t('nav.crm'), hash: '#ecosistema-crm' },
+    { id: 'afiliados', name: t('nav.afiliados'), hash: '#afiliados' },
+    { id: 'contacto', name: t('nav.contacto'), hash: '#contacto' },
+  ];
+
   return (
     <>
       <header
@@ -61,7 +72,7 @@ export default function Navbar({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Grupo Izquierdo: Logo con fondo blanco y pestañas de navegación */}
-            <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-5">
+            <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4">
               {/* Logo Oficial OIKONOMOS */}
               <button 
                 type="button"
@@ -79,15 +90,15 @@ export default function Navbar({
               </button>
 
               {/* Desktop Navigation Tabs */}
-              <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2">
-                {NAV_LINKS.map((link) => {
+              <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+                {navLinks.map((link) => {
                   const isActive = activeTab === link.id;
                   return (
                     <button
                       key={link.id}
                       type="button"
                       onClick={() => handleTabClick(link.id)}
-                      className={`text-sm font-semibold transition-all duration-200 relative py-1.5 px-3 rounded-lg cursor-pointer ${
+                      className={`text-sm font-semibold transition-all duration-200 relative py-1.5 px-2.5 xl:px-3 rounded-lg cursor-pointer ${
                         isActive
                           ? 'text-white bg-blue-600/30 border border-blue-400/50 shadow-sm shadow-blue-500/20'
                           : 'text-slate-300 hover:text-white hover:bg-white/5 border border-transparent'
@@ -103,14 +114,40 @@ export default function Navbar({
               </nav>
             </div>
 
-            {/* Action Buttons Right */}
-            <div className="hidden sm:flex items-center gap-2.5">
+            {/* Controles de Idioma, Tema y Botones de Acción */}
+            <div className="hidden sm:flex items-center gap-2 lg:gap-2.5">
+              {/* Selector de Idioma (Estilo UNET [文A ES / EN]) */}
+              <button
+                type="button"
+                onClick={toggleLang}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold text-slate-200 hover:text-white bg-white/5 hover:bg-white/10 border border-white/20 transition-all cursor-pointer shadow-xs"
+                title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+              >
+                <Globe className="w-3.5 h-3.5 text-blue-400" />
+                <span className="tracking-wider">{lang.toUpperCase()}</span>
+              </button>
+
+              {/* Conmutador Modo Claro / Modo Oscuro */}
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="p-2 rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-white/10 border border-white/20 transition-all cursor-pointer shadow-xs"
+                title={theme === 'dark' ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro'}
+                aria-label="Alternar modo claro y oscuro"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-400 transition-transform" />
+                ) : (
+                  <Moon className="w-4 h-4 text-blue-300 transition-transform" />
+                )}
+              </button>
+
               {/* Secondary (Outline): Acceso CRM Afiliados */}
               <button
                 onClick={onOpenLoginModal}
-                className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-blue-200 border border-blue-400/30 hover:border-blue-400 hover:bg-blue-900/30 transition-all duration-200 cursor-pointer shadow-sm"
+                className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-blue-200 border border-blue-400/30 hover:border-blue-400 hover:bg-blue-900/30 transition-all duration-200 cursor-pointer shadow-sm"
               >
-                Acceso CRM Afiliados
+                {t('nav.crm_access')}
               </button>
 
               {/* Primary (Solid): Agendar Diagnóstico */}
@@ -118,19 +155,35 @@ export default function Navbar({
                 onClick={() => onNavigateToContact(undefined, 'consulting')}
                 className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-950 transition-all duration-200 cursor-pointer active:scale-[0.98] border border-blue-400/30"
               >
-                Agendar Diagnóstico
+                {t('nav.diagnostic')}
               </button>
             </div>
 
-            {/* Mobile Hamburger Button */}
-            <div className="flex sm:hidden items-center gap-2">
+            {/* Mobile Actions: Language, Theme & Hamburger Button */}
+            <div className="flex sm:hidden items-center gap-1.5">
               <button
-                onClick={onOpenLoginModal}
-                className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-blue-200 border border-blue-400/30 bg-blue-900/30"
-                aria-label="Abrir login CRM"
+                type="button"
+                onClick={toggleLang}
+                className="px-2 py-1 rounded-lg text-xs font-bold text-slate-200 bg-white/10 border border-white/20"
+                title="Cambiar Idioma"
               >
-                CRM
+                {lang.toUpperCase()}
               </button>
+
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="p-1.5 rounded-lg text-slate-200 bg-white/10 border border-white/20"
+                title="Alternar Tema"
+                aria-label="Alternar modo claro y oscuro"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-3.5 h-3.5 text-amber-400" />
+                ) : (
+                  <Moon className="w-3.5 h-3.5 text-blue-300" />
+                )}
+              </button>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
@@ -155,7 +208,7 @@ export default function Navbar({
           {/* Drawer Menu */}
           <div className="fixed top-[56px] left-0 right-0 bg-[#0B132B] border-b border-slate-800 shadow-2xl p-6 space-y-4 animate-in slide-in-from-top-4 duration-300 text-white">
             <nav className="flex flex-col space-y-2">
-              {NAV_LINKS.map((link) => {
+              {navLinks.map((link) => {
                 const isActive = activeTab === link.id;
                 return (
                   <button
@@ -170,14 +223,14 @@ export default function Navbar({
                   >
                     <span>{link.name}</span>
                     {isActive && (
-                      <span className="w-2 h-2 rounded-full bg-amber-400" />
+                      <span className="w-2 h-2 rounded-full bg-blue-400" />
                     )}
                   </button>
                 );
               })}
             </nav>
 
-            <div className="pt-3 space-y-2.5">
+            <div className="pt-3 space-y-2.5 border-t border-slate-800">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -185,7 +238,7 @@ export default function Navbar({
                 }}
                 className="w-full flex items-center justify-center py-3 px-4 rounded-xl text-sm font-semibold text-blue-200 border border-blue-400/30 bg-blue-900/30"
               >
-                Acceso CRM Afiliados
+                {t('nav.crm_access')}
               </button>
 
               <button
@@ -195,7 +248,7 @@ export default function Navbar({
                 }}
                 className="w-full flex items-center justify-center py-3 px-4 rounded-xl text-sm font-semibold text-white bg-blue-600"
               >
-                Agendar Diagnóstico
+                {t('nav.diagnostic')}
               </button>
             </div>
           </div>

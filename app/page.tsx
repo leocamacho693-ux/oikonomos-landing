@@ -73,7 +73,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-800">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#070E22] text-slate-800 dark:text-slate-100 transition-colors duration-200">
       {/* Fixed Glassmorphism Navbar con pestañas interactivas */}
       <Navbar
         activeTab={activeTab}

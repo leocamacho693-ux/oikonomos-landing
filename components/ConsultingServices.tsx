@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import { CONSULTING_AREAS, ConsultingArea } from './Data';
+import { useApp } from './AppContext';
 
 interface ConsultingServicesProps {
   onSelectService: (serviceId: string) => void;
 }
 
 export default function ConsultingServices({ onSelectService }: ConsultingServicesProps) {
+  const { lang, t } = useApp();
   const [activeFilter, setActiveFilter] = useState<string>('todos');
 
   const filteredAreas = activeFilter === 'todos' 
@@ -21,24 +23,24 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
       });
 
   return (
-    <section id="areas-consultoria" className="pt-10 pb-16 sm:pt-12 sm:pb-20 md:pt-14 md:pb-24 bg-[#F8FAFC] relative">
+    <section id="areas-consultoria" className="pt-10 pb-16 sm:pt-12 sm:pb-20 md:pt-14 md:pb-24 bg-[#F8FAFC] dark:bg-[#070E22] transition-colors duration-200 relative">
       {/* Background patterns */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-semibold tracking-wide uppercase">
-            Nuestras Áreas de Consultoría
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-300 text-xs font-semibold tracking-wide uppercase">
+            {t('services.badge')}
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B132B] tracking-tight">
-            Soluciones Especializadas 360°
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B132B] dark:text-white tracking-tight">
+            {t('services.title')}
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Un equipo multidisciplinario listo para resolver los desafíos operativos, financieros y legales de tu organización con metodologías probadas y acompañamiento continuo.
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            {t('services.subtitle')}
           </p>
 
           {/* Filter Pills */}
@@ -48,17 +50,17 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
               className={`px-4 py-1.5 rounded-full font-medium transition-all cursor-pointer ${
                 activeFilter === 'todos'
                   ? 'bg-[#1E3A8A] text-white shadow-sm'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
               }`}
             >
-              Todas las Áreas (7)
+              {lang === 'en' ? 'All Disciplines (7)' : 'Todas las Áreas (7)'}
             </button>
             <button
               onClick={() => setActiveFilter('legal-fiscal')}
               className={`px-4 py-1.5 rounded-full font-medium transition-all cursor-pointer ${
                 activeFilter === 'legal-fiscal'
                   ? 'bg-[#1E3A8A] text-white shadow-sm'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
               }`}
             >
               Legal & Contable
@@ -68,7 +70,7 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
               className={`px-4 py-1.5 rounded-full font-medium transition-all cursor-pointer ${
                 activeFilter === 'estrategia'
                   ? 'bg-[#1E3A8A] text-white shadow-sm'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
               }`}
             >
               Administrativa & Económica
@@ -78,7 +80,7 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
               className={`px-4 py-1.5 rounded-full font-medium transition-all cursor-pointer ${
                 activeFilter === 'agro-ambiente'
                   ? 'bg-[#1E3A8A] text-white shadow-sm'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
               }`}
             >
               Agropecuaria & Ambiental
@@ -88,7 +90,7 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
               className={`px-4 py-1.5 rounded-full font-medium transition-all cursor-pointer ${
                 activeFilter === 'growth'
                   ? 'bg-[#1E3A8A] text-white shadow-sm'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
               }`}
             >
               Marketing Digital
@@ -103,7 +105,7 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
             return (
               <div
                 key={area.id}
-                className={`group relative rounded-2xl bg-white hover:bg-slate-50/40 border border-slate-200/90 shadow-sm hover:shadow-xl hover:shadow-blue-900/10 hover:border-blue-300 transition-all duration-300 flex flex-col justify-between overflow-hidden p-6 sm:p-7 ${
+                className={`group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:shadow-blue-900/10 dark:hover:border-blue-500 transition-all duration-300 flex flex-col justify-between overflow-hidden p-6 sm:p-7 ${
                   isFeaturedLast ? 'lg:col-span-3 lg:max-w-2xl lg:mx-auto w-full' : ''
                 }`}
               >
@@ -113,39 +115,39 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
                 <div>
                   {/* Category Row - Sin números */}
                   <div className="mb-4">
-                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-slate-700 bg-slate-100 px-3 py-1 rounded-md border border-slate-200/80">
+                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-md border border-slate-200/80 dark:border-slate-700">
                       {area.category}
                     </span>
                   </div>
 
                   {/* Title & Tagline */}
-                  <h3 className="text-xl font-bold text-[#0B132B] group-hover:text-[#1E3A8A] transition-colors leading-snug">
+                  <h3 className="text-xl font-bold text-[#0B132B] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                     {area.name}
                   </h3>
-                  <div className="text-xs font-semibold text-blue-700 mt-1 mb-3">
+                  <div className="text-xs font-semibold text-blue-700 dark:text-blue-400 mt-1 mb-3">
                     {area.tagline}
                   </div>
 
                   {/* Leader Profile Badge - Un solo color, sin degradados ni emojis */}
                   {area.leaderName && (
-                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 mb-4 shadow-2xs">
+                    <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 mb-4 shadow-2xs">
                       <div className="flex items-center gap-3">
                         {area.leaderPhoto ? (
                           <img
                             src={area.leaderPhoto}
                             alt={area.leaderName}
-                            className="w-12 h-12 rounded-full object-cover border-2 border-slate-300 flex-shrink-0"
+                            className="w-12 h-12 rounded-full object-cover border-2 border-slate-300 dark:border-slate-600 flex-shrink-0"
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-full bg-blue-100 text-[#1E3A8A] flex items-center justify-center font-bold text-sm border-2 border-blue-200 flex-shrink-0">
+                          <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/40 text-[#1E3A8A] dark:text-blue-300 flex items-center justify-center font-bold text-sm border-2 border-blue-200 dark:border-blue-700 flex-shrink-0">
                             {area.leaderName.split(' ').map(n => n[0]).slice(0, 2).join('')}
                           </div>
                         )}
                         <div className="min-w-0">
-                          <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                          <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                             {area.leaderTitle || 'Consultor Líder'}
                           </div>
-                          <div className="text-sm font-bold text-[#0B132B] truncate">
+                          <div className="text-sm font-bold text-[#0B132B] dark:text-white truncate">
                             {area.leaderName}
                           </div>
                         </div>
@@ -153,10 +155,10 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
 
                       {/* Credenciales y trayectoria - Sin emojis */}
                       {area.leaderCredentials && area.leaderCredentials.length > 0 && (
-                        <div className="pt-2.5 mt-2.5 border-t border-slate-200 space-y-1.5 text-xs text-slate-600">
+                        <div className="pt-2.5 mt-2.5 border-t border-slate-200 dark:border-slate-700 space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
                           {area.leaderCredentials.map((cred, idx) => (
                             <div key={idx} className="flex items-start gap-2 leading-snug">
-                              <span className="text-[#1E3A8A] font-bold">•</span>
+                              <span className="text-[#1E3A8A] dark:text-blue-400 font-bold">•</span>
                               <span>{cred}</span>
                             </div>
                           ))}
@@ -166,18 +168,18 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
                   )}
 
                   {/* Description */}
-                  <p className="text-sm text-slate-600 leading-relaxed mb-5 font-normal">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5 font-normal">
                     {area.description}
                   </p>
 
                   {/* Key Deliverables Checklist */}
-                  <div className="space-y-2 mb-6 pt-3 border-t border-slate-100">
-                    <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      Entregables Clave
+                  <div className="space-y-2 mb-6 pt-3 border-t border-slate-100 dark:border-slate-800">
+                    <div className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                      {lang === 'en' ? 'Key Deliverables' : 'Entregables Clave'}
                     </div>
                     {area.deliverables.map((deliv, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A] mt-1.5 flex-shrink-0" />
+                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1E3A8A] dark:bg-blue-400 mt-1.5 flex-shrink-0" />
                         <span>{deliv}</span>
                       </div>
                     ))}
@@ -185,16 +187,16 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
                 </div>
 
                 {/* Footer with KPI and CTA Button */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
-                  <div className="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/80">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between mt-auto">
+                  <div className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-md border border-emerald-200/80 dark:border-emerald-800/60">
                     {area.kpi}
                   </div>
 
                   <button
                     onClick={() => onSelectService(area.id)}
-                    className="text-xs sm:text-sm font-bold text-[#1E3A8A] group-hover:text-blue-700 transition-colors cursor-pointer"
+                    className="text-xs sm:text-sm font-bold text-[#1E3A8A] dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors cursor-pointer"
                   >
-                    Solicitar asesoría →
+                    {t('services.request_cta')}
                   </button>
                 </div>
               </div>
@@ -206,17 +208,17 @@ export default function ConsultingServices({ onSelectService }: ConsultingServic
         <div className="mt-12 rounded-2xl bg-[#0B132B] border border-slate-800 text-white p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="space-y-1 text-center md:text-left">
             <h4 className="text-lg sm:text-xl font-bold text-white">
-              ¿Tu empresa requiere un diagnóstico integral en múltiples áreas?
+              {t('services.multi_banner_title')}
             </h4>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-              Nuestros planes combinan células de trabajo conjuntas (ej. Agropecuaria + Contable + Legal) con una sola tarifa optimizada y un director de cuenta dedicado.
+              {t('services.multi_banner_desc')}
             </p>
           </div>
           <button
             onClick={() => onSelectService('todos')}
-            className="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm whitespace-nowrap shadow-lg shadow-amber-500/20 transition-all cursor-pointer"
+            className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm whitespace-nowrap shadow-lg transition-all cursor-pointer"
           >
-            Solicitar Diagnóstico Multidisciplinario
+            {t('services.multi_banner_btn')}
           </button>
         </div>
 
