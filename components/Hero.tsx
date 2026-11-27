@@ -24,7 +24,7 @@ const CAROUSEL_SLIDES_ES: CarouselSlide[] = [
   {
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
     tag: 'Crecimiento Estratégico',
-    badge: 'Consultoría Integral y Tecnología de Gestión',
+    badge: 'Consultoría Integral',
     titlePrefix: 'Impulsamos el ',
     titleHighlight: 'crecimiento estratégico',
     titleSuffix: ' de tu empresa con respaldo multidisciplinario',
@@ -33,7 +33,7 @@ const CAROUSEL_SLIDES_ES: CarouselSlide[] = [
   {
     image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop',
     tag: 'Puente de Capital',
-    badge: 'Conexión de Capital Global y Talento Empresarial',
+    badge: 'Conexión de Capital Global',
     titlePrefix: 'Transformamos la ',
     titleHighlight: 'complejidad del entorno',
     titleSuffix: ' en ventajas competitivas sostenibles',
@@ -63,7 +63,7 @@ const CAROUSEL_SLIDES_EN: CarouselSlide[] = [
   {
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
     tag: 'Strategic Growth',
-    badge: 'Comprehensive Consulting & Management Technology',
+    badge: 'Comprehensive Consulting',
     titlePrefix: 'Driving ',
     titleHighlight: 'strategic growth',
     titleSuffix: ' for your enterprise with multidisciplinary support',
@@ -72,7 +72,7 @@ const CAROUSEL_SLIDES_EN: CarouselSlide[] = [
   {
     image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop',
     tag: 'Capital Bridge',
-    badge: 'Bridging Global Capital & Enterprise Talent',
+    badge: 'Connecting Global Capital',
     titlePrefix: 'Transforming ',
     titleHighlight: 'market complexity',
     titleSuffix: ' into sustainable competitive advantages',
@@ -201,12 +201,15 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
         
         {/* 1. Logo Oficial OIKONOMOS Emblema Centrado */}
         <div className="flex flex-col items-center justify-center mb-2 sm:mb-2.5">
-          <div className="relative inline-block">
+          <div className="relative flex flex-col items-center">
             <img 
               src="/logo-white.png" 
               alt="OIKONOMOS" 
               className="relative h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain filter drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)] hover:scale-105 transition-transform duration-300" 
             />
+            <span className="text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-[0.45em] uppercase text-slate-300/90 -mt-1 sm:-mt-1.5 drop-shadow-md select-none pl-1">
+              GLOBAL
+            </span>
           </div>
         </div>
 

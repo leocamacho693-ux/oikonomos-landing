@@ -27,8 +27,8 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'nav.diagnostic': 'Agendar Diagnóstico',
 
     // Hero
-    'hero.badge_1': 'Consultoría Integral y Tecnología de Gestión',
-    'hero.badge_2': 'Conexión de Capital Global y Talento Empresarial',
+    'hero.badge_1': 'Consultoría Integral',
+    'hero.badge_2': 'Conexión de Capital Global',
     'hero.badge_3': 'Agroindustria y Sostenibilidad Ambiental',
     'hero.badge_4': 'Blindaje Jurídico y Protección Fiscal',
     'hero.explore_services': 'Explorar Servicios',
@@ -38,7 +38,7 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'hero.trust_3': 'Confidencialidad',
     'hero.stat_areas': 'Áreas de Consultoría Integral',
     'hero.stat_companies': 'Empresas y Afiliados Activos',
-    'hero.stat_effectiveness': 'Índice de Efectividad Auditada',
+    'hero.stat_effectiveness': 'Índice de Efectividad',
     'hero.stat_capital': 'Proyectos Ejecutados',
 
     // Identity
@@ -121,8 +121,8 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'nav.diagnostic': 'Book Diagnostic',
 
     // Hero
-    'hero.badge_1': 'Comprehensive Consulting and Management Technology',
-    'hero.badge_2': 'Bridging Global Capital and Business Talent',
+    'hero.badge_1': 'Comprehensive Consulting',
+    'hero.badge_2': 'Connecting Global Capital',
     'hero.badge_3': 'Agribusiness and Environmental Sustainability',
     'hero.badge_4': 'Legal Shielding and Tax Protection',
     'hero.explore_services': 'Explore Services',
@@ -132,7 +132,7 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'hero.trust_3': 'Confidentiality',
     'hero.stat_areas': 'Core Consulting Disciplines',
     'hero.stat_companies': 'Active Businesses & Affiliates',
-    'hero.stat_effectiveness': 'Audited Effectiveness Rate',
+    'hero.stat_effectiveness': 'Effectiveness Rate',
     'hero.stat_capital': 'Executed Projects',
 
     // Identity
