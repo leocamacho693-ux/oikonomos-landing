@@ -146,8 +146,8 @@ export default function ContactSection({ selectedAreaFromParent, defaultProfile 
                 )}
 
                 {/* Perfil del Servicio: Exclusivo Consultoría */}
-                <div>
-                  <div className="inline-flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold bg-[#1E3A8A] text-white shadow-sm">
+                <div className="flex justify-center">
+                  <div className="inline-flex items-center gap-2 py-2.5 px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#1E3A8A] text-white shadow-sm">
                     {t('contact.profile_label')}
                   </div>
                 </div>
