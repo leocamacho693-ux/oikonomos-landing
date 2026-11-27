@@ -69,20 +69,20 @@ export default function CrmLoginModal({ isOpen, onClose }: CrmLoginModalProps) {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Modal Header */}
-        <div className="mb-6">
+        {/* Modal Header Centrado */}
+        <div className="mb-6 text-center flex flex-col items-center">
           <img 
             src="/logo-white.png" 
             alt="OIKONOMOS" 
-            className="h-10 w-auto object-contain mb-4" 
+            className="h-10 w-auto object-contain mb-4 mx-auto" 
           />
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3 mx-auto">
             Portal Exclusivo
           </div>
-          <h3 className="text-2xl font-bold text-white tracking-tight">
+          <h3 className="text-2xl font-bold text-white tracking-tight text-center">
             Acceso CRM Afiliados
           </h3>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-400 mt-1 text-center max-w-sm">
             Plataforma centralizada de consultoría, expedientes y comisiones de OIKONOMOS GLOBAL.
           </p>
         </div>
