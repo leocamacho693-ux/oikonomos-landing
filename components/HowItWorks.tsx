@@ -25,31 +25,31 @@ const STEP_THEMES = [
     glow: 'hover:shadow-xl',
   },
   {
-    // Paso 2: Verde Azulado / Teal Sólido
-    topGradient: 'bg-teal-600',
+    // Paso 2: Índigo Ejecutivo Sólido (reemplaza al verde)
+    topGradient: 'bg-indigo-600',
     cardBg: 'bg-white dark:bg-slate-900',
-    border: 'border-slate-200 dark:border-slate-800 hover:border-teal-500',
-    badge: 'bg-teal-600 text-white shadow-md shadow-teal-600/20',
-    subtitle: 'text-teal-700 dark:text-teal-400',
-    titleHover: 'group-hover:text-teal-900 dark:group-hover:text-teal-300',
+    border: 'border-slate-200 dark:border-slate-800 hover:border-indigo-500',
+    badge: 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20',
+    subtitle: 'text-indigo-700 dark:text-indigo-400',
+    titleHover: 'group-hover:text-indigo-900 dark:group-hover:text-indigo-300',
     bulletPill: 'bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200',
-    bulletDot: 'bg-teal-600',
-    footerText: 'text-teal-700 dark:text-teal-400 group-hover:text-teal-900 dark:group-hover:text-teal-300',
+    bulletDot: 'bg-indigo-600',
+    footerText: 'text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-indigo-300',
     footerPhase: 'Fase 2 de 3',
     nextAction: 'Siguiente fase →',
     glow: 'hover:shadow-xl',
   },
   {
-    // Paso 3: Ámbar Sólido
-    topGradient: 'bg-amber-500',
+    // Paso 3: Azul Marino Corporativo Sólido (reemplaza al amarillo)
+    topGradient: 'bg-[#1E3A8A]',
     cardBg: 'bg-white dark:bg-slate-900',
-    border: 'border-slate-200 dark:border-slate-800 hover:border-amber-500',
-    badge: 'bg-amber-600 text-white shadow-md shadow-amber-600/20',
-    subtitle: 'text-amber-700 dark:text-amber-400',
-    titleHover: 'group-hover:text-amber-900 dark:group-hover:text-amber-300',
+    border: 'border-slate-200 dark:border-slate-800 hover:border-blue-700',
+    badge: 'bg-[#1E3A8A] text-white shadow-md shadow-blue-900/20',
+    subtitle: 'text-blue-900 dark:text-blue-300',
+    titleHover: 'group-hover:text-blue-950 dark:group-hover:text-blue-200',
     bulletPill: 'bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200',
-    bulletDot: 'bg-amber-500',
-    footerText: 'text-amber-700 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-amber-300',
+    bulletDot: 'bg-[#1E3A8A]',
+    footerText: 'text-blue-900 dark:text-blue-300 group-hover:text-blue-950 dark:group-hover:text-blue-200',
     footerPhase: 'Fase 3 de 3',
     nextAction: 'Objetivo Cumplido ✓',
     glow: 'hover:shadow-xl',
@@ -64,8 +64,8 @@ export default function HowItWorks({ onStartWorkflow }: HowItWorksProps) {
       
       {/* Dynamic ambient color meshes */}
       <div className="absolute top-10 left-10 w-96 h-96 bg-blue-200/40 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-teal-200/35 dark:bg-teal-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-amber-200/35 dark:bg-amber-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-indigo-200/35 dark:bg-indigo-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-blue-300/30 dark:bg-blue-800/10 rounded-full blur-3xl pointer-events-none -z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -104,23 +104,25 @@ export default function HowItWorks({ onStartWorkflow }: HowItWorksProps) {
 
                 <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
                   <div>
-                    {/* Step indicator bar - Sin números 01, 02, 03 grandes */}
-                    <div className="flex items-center justify-between mb-5">
-                      <span className={`text-xs font-bold tracking-wider uppercase ${theme.badge} px-3.5 py-1.5 rounded-xl`}>
+                    {/* Step indicator bar - Centrado */}
+                    <div className="flex items-center justify-center mb-5">
+                      <span className={`text-xs font-bold tracking-wider uppercase ${theme.badge} px-4 py-1.5 rounded-xl text-center shadow-xs`}>
                         {lang === 'es' ? `PASO ${idx + 1}` : `STEP ${idx + 1}`}
                       </span>
                     </div>
 
-                    {/* Step Titles */}
-                    <div className={`text-xs font-extrabold uppercase tracking-widest ${theme.subtitle} mb-1.5`}>
-                      {step.subtitle}
+                    {/* Step Titles - Centrado */}
+                    <div className="text-center mb-6">
+                      <div className={`text-xs font-extrabold uppercase tracking-widest ${theme.subtitle} mb-1.5`}>
+                        {step.subtitle}
+                      </div>
+                      <h3 className={`text-2xl font-extrabold text-[#0B132B] dark:text-white mb-3 ${theme.titleHover} transition-colors tracking-tight`}>
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                        {step.description}
+                      </p>
                     </div>
-                    <h3 className={`text-2xl font-extrabold text-[#0B132B] dark:text-white mb-3.5 ${theme.titleHover} transition-colors tracking-tight`}>
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-normal">
-                      {step.description}
-                    </p>
 
                     {/* Bullets with soft pills */}
                     <div className="space-y-2.5 pt-5 border-t border-slate-200/80 dark:border-slate-800 mb-6">
