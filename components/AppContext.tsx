@@ -39,7 +39,7 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'hero.stat_areas': 'Áreas de Consultoría Integral',
     'hero.stat_companies': 'Empresas y Afiliados Activos',
     'hero.stat_effectiveness': 'Índice de Efectividad Auditada',
-    'hero.stat_capital': 'Dictámenes y Proyectos Ejecutados',
+    'hero.stat_capital': 'Proyectos Ejecutados',
 
     // Identity
     'identity.badge': 'Identidad y Propósito Institucional',
@@ -133,7 +133,7 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'hero.stat_areas': 'Core Consulting Disciplines',
     'hero.stat_companies': 'Active Businesses & Affiliates',
     'hero.stat_effectiveness': 'Audited Effectiveness Rate',
-    'hero.stat_capital': 'Executed Projects & Opinions',
+    'hero.stat_capital': 'Executed Projects',
 
     // Identity
     'identity.badge': 'Institutional Identity & Purpose',
