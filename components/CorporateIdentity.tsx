@@ -12,23 +12,23 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
   const { lang, t } = useApp();
 
   const corporateValues_ES = [
-    { num: '01', name: 'Integridad', desc: 'Transparencia, ética irrestricta y confidencialidad en cada dictamen.' },
-    { num: '02', name: 'Excelencia', desc: 'Rigor técnico multidisciplinario de estándar corporativo internacional.' },
-    { num: '03', name: 'Innovación', desc: 'Metodologías ágiles potenciadas por nuestro Ecosistema CRM propietario.' },
-    { num: '04', name: 'Visión Estratégica', desc: 'Capacidad de anticipación y modelado de escenarios ante la complejidad.' },
-    { num: '05', name: 'Compromiso País', desc: 'Dedicación al desarrollo económico productivo y sostenible de Venezuela.' },
-    { num: '06', name: 'Colaboración', desc: 'Sinergia activa con nuestra red de afiliados, inversionistas y clientes.' },
-    { num: '07', name: 'Impacto Real', desc: 'Generación de valor tangible, optimización de costos y rentabilidad medible.' }
+    { num: '01', name: 'Integridad', desc: 'Transparencia, ética irrestricta y confidencialidad en cada dictamen' },
+    { num: '02', name: 'Excelencia', desc: 'Rigor técnico multidisciplinario de estándar corporativo internacional' },
+    { num: '03', name: 'Innovación', desc: 'Metodologías ágiles potenciadas por nuestro Ecosistema CRM propietario' },
+    { num: '04', name: 'Visión Estratégica', desc: 'Capacidad de anticipación y modelado de escenarios ante la complejidad' },
+    { num: '05', name: 'Compromiso País', desc: 'Dedicación al desarrollo económico productivo y sostenible de Venezuela' },
+    { num: '06', name: 'Colaboración', desc: 'Sinergia activa con nuestra red de afiliados, inversionistas y clientes' },
+    { num: '07', name: 'Impacto Real', desc: 'Generación de valor tangible, optimización de costos y rentabilidad medible' }
   ];
 
   const corporateValues_EN = [
-    { num: '01', name: 'Integrity', desc: 'Transparency, unyielding ethics and confidentiality in every advisory engagement.' },
-    { num: '02', name: 'Excellence', desc: 'Multidisciplinary technical rigor adhering to international corporate benchmarks.' },
-    { num: '03', name: 'Innovation', desc: 'Agile methodologies powered by our proprietary CRM Ecosystem.' },
-    { num: '04', name: 'Strategic Vision', desc: 'Proactive foresight and complex macroeconomic scenario modeling.' },
-    { num: '05', name: 'Country Commitment', desc: 'Dedication to productive and sustainable economic development in Venezuela.' },
-    { num: '06', name: 'Collaboration', desc: 'Active synergy across our network of affiliates, institutional investors and partners.' },
-    { num: '07', name: 'Tangible Impact', desc: 'Real enterprise value creation, cost optimization and measurable ROI.' }
+    { num: '01', name: 'Integrity', desc: 'Transparency, unyielding ethics and confidentiality in every advisory engagement' },
+    { num: '02', name: 'Excellence', desc: 'Multidisciplinary technical rigor adhering to international corporate benchmarks' },
+    { num: '03', name: 'Innovation', desc: 'Agile methodologies powered by our proprietary CRM Ecosystem' },
+    { num: '04', name: 'Strategic Vision', desc: 'Proactive foresight and complex macroeconomic scenario modeling' },
+    { num: '05', name: 'Country Commitment', desc: 'Dedication to productive and sustainable economic development in Venezuela' },
+    { num: '06', name: 'Collaboration', desc: 'Active synergy across our network of affiliates, institutional investors and partners' },
+    { num: '07', name: 'Tangible Impact', desc: 'Real enterprise value creation, cost optimization and measurable ROI' }
   ];
 
   const corporateValues = lang === 'en' ? corporateValues_EN : corporateValues_ES;
@@ -144,10 +144,7 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
                 key={idx}
                 className="relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:shadow-lg transition-all duration-300 group overflow-hidden"
               >
-                <div className="text-sm font-extrabold font-mono text-blue-600 dark:text-blue-400 mb-2">
-                  {val.num}
-                </div>
-                <h4 className="text-base font-bold text-[#0B132B] dark:text-white mb-1.5">
+                <h4 className="text-base font-bold text-[#0B132B] dark:text-white mb-2">
                   {val.name}
                 </h4>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
@@ -163,10 +160,7 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
                 key={idx}
                 className="relative p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:shadow-lg transition-all duration-300 group overflow-hidden"
               >
-                <div className="text-sm font-extrabold font-mono text-blue-600 dark:text-blue-400 mb-2">
-                  {val.num}
-                </div>
-                <h4 className="text-base font-bold text-[#0B132B] dark:text-white mb-1.5">
+                <h4 className="text-base font-bold text-[#0B132B] dark:text-white mb-2">
                   {val.name}
                 </h4>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">

@@ -27,8 +27,8 @@ const CAROUSEL_SLIDES_ES: CarouselSlide[] = [
     badge: 'Consultoría Integral y Tecnología de Gestión',
     titlePrefix: 'Impulsamos el ',
     titleHighlight: 'crecimiento estratégico',
-    titleSuffix: ' de tu empresa con respaldo multidisciplinario.',
-    subtitle: 'En OIKONOMOS combinamos asesoría experta en 7 áreas clave del negocio con un ecosistema CRM exclusivo para optimizar la gestión, trazabilidad y rentabilidad de nuestros afiliados.',
+    titleSuffix: ' de tu empresa con respaldo multidisciplinario',
+    subtitle: 'En OIKONOMOS combinamos asesoría experta en 7 áreas clave del negocio con un ecosistema CRM exclusivo para optimizar la gestión, trazabilidad y rentabilidad de nuestros afiliados',
   },
   {
     image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop',
@@ -36,8 +36,8 @@ const CAROUSEL_SLIDES_ES: CarouselSlide[] = [
     badge: 'Conexión de Capital Global y Talento Empresarial',
     titlePrefix: 'Transformamos la ',
     titleHighlight: 'complejidad del entorno',
-    titleSuffix: ' en ventajas competitivas sostenibles.',
-    subtitle: 'Conectamos a inversionistas internacionales con oportunidades de alto valor en Venezuela y fortalecemos a las empresas locales para competir con éxito en los mercados globales.',
+    titleSuffix: ' en ventajas competitivas sostenibles',
+    subtitle: 'Conectamos a inversionistas internacionales con oportunidades de alto valor en Venezuela y fortalecemos a las empresas locales para competir con éxito en los mercados globales',
   },
   {
     image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=2070&auto=format&fit=crop',
@@ -45,8 +45,8 @@ const CAROUSEL_SLIDES_ES: CarouselSlide[] = [
     badge: 'Agroindustria y Sostenibilidad Ambiental',
     titlePrefix: 'Optimizamos la ',
     titleHighlight: 'productividad y rentabilidad',
-    titleSuffix: ' del sector agropecuario y productivo.',
-    subtitle: 'Estructuración financiera rural, optimización de costos de producción en campo, evaluaciones de impacto ambiental y planes de cumplimiento normativo sustentable.',
+    titleSuffix: ' del sector agropecuario y productivo',
+    subtitle: 'Estructuración financiera rural, optimización de costos de producción en campo, evaluaciones de impacto ambiental y planes de cumplimiento normativo sustentable',
   },
   {
     image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=2070&auto=format&fit=crop',
@@ -54,8 +54,8 @@ const CAROUSEL_SLIDES_ES: CarouselSlide[] = [
     badge: 'Blindaje Jurídico Corporativo y Protección Fiscal',
     titlePrefix: 'Garantizamos la ',
     titleHighlight: 'seguridad jurídica',
-    titleSuffix: ' y contractual en cada una de tus operaciones.',
-    subtitle: 'Estructuración de contratos mercantiles complejos, registro de propiedad intelectual, cumplimiento normativo y asesoría legal preventiva de máximo estándar corporativo.',
+    titleSuffix: ' y contractual en cada una de tus operaciones',
+    subtitle: 'Estructuración de contratos mercantiles complejos, registro de propiedad intelectual, cumplimiento normativo y asesoría legal preventiva de máximo estándar corporativo',
   },
 ];
 
@@ -66,8 +66,8 @@ const CAROUSEL_SLIDES_EN: CarouselSlide[] = [
     badge: 'Comprehensive Consulting & Management Technology',
     titlePrefix: 'Driving ',
     titleHighlight: 'strategic growth',
-    titleSuffix: ' for your enterprise with multidisciplinary support.',
-    subtitle: 'At OIKONOMOS we combine expert advisory across 7 core business disciplines with a proprietary CRM ecosystem to optimize governance, traceability and partner profitability.',
+    titleSuffix: ' for your enterprise with multidisciplinary support',
+    subtitle: 'At OIKONOMOS we combine expert advisory across 7 core business disciplines with a proprietary CRM ecosystem to optimize governance, traceability and partner profitability',
   },
   {
     image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop',
@@ -75,8 +75,8 @@ const CAROUSEL_SLIDES_EN: CarouselSlide[] = [
     badge: 'Bridging Global Capital & Enterprise Talent',
     titlePrefix: 'Transforming ',
     titleHighlight: 'market complexity',
-    titleSuffix: ' into sustainable competitive advantages.',
-    subtitle: 'Connecting international investors with prime opportunities in Venezuela while empowering domestic firms to compete successfully on global stages.',
+    titleSuffix: ' into sustainable competitive advantages',
+    subtitle: 'Connecting international investors with prime opportunities in Venezuela while empowering domestic firms to compete successfully on global stages',
   },
   {
     image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=2070&auto=format&fit=crop',
@@ -84,8 +84,8 @@ const CAROUSEL_SLIDES_EN: CarouselSlide[] = [
     badge: 'Agribusiness & Environmental Sustainability',
     titlePrefix: 'Optimizing ',
     titleHighlight: 'productivity & yield',
-    titleSuffix: ' across the agroindustrial sector.',
-    subtitle: 'Rural financial structuring, field production cost reduction, environmental impact assessments and sustainable regulatory compliance.',
+    titleSuffix: ' across the agroindustrial sector',
+    subtitle: 'Rural financial structuring, field production cost reduction, environmental impact assessments and sustainable regulatory compliance',
   },
   {
     image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=2070&auto=format&fit=crop',
@@ -93,8 +93,8 @@ const CAROUSEL_SLIDES_EN: CarouselSlide[] = [
     badge: 'Corporate Legal Shielding & Tax Protection',
     titlePrefix: 'Ensuring ',
     titleHighlight: 'legal certainty',
-    titleSuffix: ' and contractual protection in every transaction.',
-    subtitle: 'High-complexity commercial contracts, intellectual property protection, regulatory compliance and proactive risk mitigation.',
+    titleSuffix: ' and contractual protection in every transaction',
+    subtitle: 'High-complexity commercial contracts, intellectual property protection, regulatory compliance and proactive risk mitigation',
   },
 ];
 
@@ -305,7 +305,7 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
                     : 'bg-black/30 text-slate-400 border-white/10 hover:bg-black/50 hover:text-slate-200'
                 }`}
               >
-                0{idx + 1} {slide.tag}
+                {slide.tag}
               </button>
             );
           })}
