@@ -1,482 +1,361 @@
 'use client';
 
-import React, { useState } from 'react';
-import { SAMPLE_CASES, SAMPLE_AFFILIATES, CRM_STATS } from './Data';
+import React, { useState, useMemo } from 'react';
+import { useApp } from './AppContext';
+import { ArrowLeftRight, TrendingUp, ShieldCheck, Database, Landmark, DollarSign, ExternalLink, BarChart3, LineChart, Sparkles } from 'lucide-react';
 
 interface CrmSectionProps {
   onOpenLoginModal: () => void;
   onRequestAffiliation: () => void;
 }
 
+// Índices y Cotizaciones Financieras en Vivo de OIKONOMOS CAPITAL
+const FINANCIAL_INDICES = [
+  { sym: 'USD / BCV', val: 'Bs. 48.24', change: '+0.12%', isUp: true, source: 'BCV' },
+  { sym: 'USD / P2P', val: 'Bs. 57.80', change: '+0.35%', isUp: true, source: 'P2P' },
+  { sym: 'EUR / BCV', val: 'Bs. 52.40', change: '+0.08%', isUp: true, source: 'BCV' },
+  { sym: 'BTC / USDT', val: '$88,450.00', change: '+3.42%', isUp: true, source: 'Crypto' },
+  { sym: 'ETH / USDT', val: '$3,120.50', change: '+2.15%', isUp: true, source: 'Crypto' },
+  { sym: 'BVC Caracas (IBC)', val: '124,530 pts', change: '+1.10%', isUp: true, source: 'BVC' },
+  { sym: 'Oro (Oz Troy)', val: '$2,684.20', change: '+0.45%', isUp: true, source: 'Commodities' },
+  { sym: 'TRM Colombia', val: '$4,395 COP', change: '-0.20%', isUp: false, source: 'TRM' },
+];
+
 export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: CrmSectionProps) {
-  const [activeTab, setActiveTab] = useState<'resumen' | 'casos' | 'afiliados'>('resumen');
-  const [copiedLink, setCopiedLink] = useState(false);
-  const [caseFilter, setCaseFilter] = useState('');
+  const { lang, t } = useApp();
 
-  const referralLink = 'https://crm.oikonomos.global/portal/ref/AG-8942';
+  // Estados del Convertidor Inteligente de Oikonomos Capital
+  const [amount, setAmount] = useState<string>('100');
+  const [selectedCurrency, setSelectedCurrency] = useState<string>('USD');
+  const [isInverse, setIsInverse] = useState<boolean>(false);
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(referralLink);
-    setCopiedLink(true);
-    setTimeout(() => setCopiedLink(false), 2200);
+  // Tasas referenciales oficiales y paralelas de Oikonomos Capital
+  const rates = useMemo(() => ({
+    USD: { bcv: 48.24, p2p: 57.80 },
+    USDT: { bcv: 48.24, p2p: 58.10 },
+    EUR: { bcv: 52.40, p2p: 62.50 },
+    BTC: { bcv: 48.24 * 88450, p2p: 57.80 * 88450 },
+    VES: { bcv: 1, p2p: 1 }
+  }), []);
+
+  const numAmount = parseFloat(amount) || 0;
+  const currentRate = rates[selectedCurrency as keyof typeof rates] || rates.USD;
+
+  // Cálculo de conversión Tasa BCV
+  const resultBCV = useMemo(() => {
+    if (selectedCurrency === 'VES') {
+      return numAmount > 0 ? (numAmount / rates.USD.bcv).toFixed(2) : '0.00';
+    }
+    return (numAmount * currentRate.bcv).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }, [numAmount, selectedCurrency, currentRate, rates.USD.bcv]);
+
+  // Cálculo de conversión Mercado P2P
+  const resultP2P = useMemo(() => {
+    if (selectedCurrency === 'VES') {
+      return numAmount > 0 ? (numAmount / rates.USD.p2p).toFixed(2) : '0.00';
+    }
+    return (numAmount * currentRate.p2p).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }, [numAmount, selectedCurrency, currentRate, rates.USD.p2p]);
+
+  // Diferencial Cambiario (Spread)
+  const spreadPercentage = useMemo(() => {
+    const diff = ((rates.USD.p2p - rates.USD.bcv) / rates.USD.bcv) * 100;
+    return diff.toFixed(2);
+  }, [rates.USD]);
+
+  // Brecha nominal en Bolívares
+  const spreadNominal = useMemo(() => {
+    return (rates.USD.p2p - rates.USD.bcv).toFixed(2);
+  }, [rates.USD]);
+
+  const handleSwap = () => {
+    setIsInverse(!isInverse);
+    if (!isInverse) {
+      setSelectedCurrency('VES');
+      setAmount('5000');
+    } else {
+      setSelectedCurrency('USD');
+      setAmount('100');
+    }
   };
 
-  const filteredCases = caseFilter
-    ? SAMPLE_CASES.filter(c => c.client.toLowerCase().includes(caseFilter.toLowerCase()) || c.area.toLowerCase().includes(caseFilter.toLowerCase()))
-    : SAMPLE_CASES;
-
   return (
-    <section id="ecosistema-crm" className="py-20 md:py-28 bg-[#0B132B] text-white relative overflow-hidden">
-      {/* Background radial gradients & glow effects */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-10 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#1E3A8A_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Section Header: Title and Value Prop */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
-          <div className="lg:col-span-7 space-y-5">
-            {/* Tag Badge */}
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider">
-              Diferenciador Tecnológico de la Firma
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              Potencia tu gestión con nuestro{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300">
-                CRM exclusivo para Afiliados
+    <section id="ecosistema-crm" className="py-20 md:py-28 bg-[#070E22] text-white relative overflow-hidden transition-colors duration-200">
+      
+      {/* 1. Ticker Bar Superior con Índices Financieros en Tiempo Real */}
+      <div className="border-y border-slate-800 bg-[#040814] py-3 overflow-hidden shadow-inner mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between gap-4 mb-2">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                {lang === 'es' ? 'Índices Financieros en Vivo • OIKONOMOS CAPITAL' : 'Live Financial Indices • OIKONOMOS CAPITAL'}
               </span>
-            </h2>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-              Ser afiliado de <strong className="text-white font-semibold">OIKONOMOS GLOBAL</strong> te brinda acceso directo a nuestra plataforma CRM propietaria: centraliza clientes, haz seguimiento en tiempo real a tus expedientes de consultoría, gestiona referidos y visualiza indicadores clave en un solo lugar.
-            </p>
-
-            {/* Checklist */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-slate-200">
-                Panel centralizado de seguimiento de casos y consultorías activas.
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-slate-200">
-                Gestión inteligente de cartera de clientes, prospectos y oportunidades.
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-slate-200">
-                Portal de afiliados con métricas de rendimiento, comisiones y reportes automatizados.
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-slate-200">
-                Seguridad de datos de nivel empresarial y acceso multi-dispositivo 24/7.
-              </div>
             </div>
-
-            {/* CTAs */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
-              <button
-                onClick={onOpenLoginModal}
-                className="px-6 py-3.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 transition-all cursor-pointer"
-              >
-                Iniciar Sesión en el CRM
-              </button>
-
-              <button
-                onClick={onRequestAffiliation}
-                className="px-6 py-3.5 rounded-xl text-sm font-semibold text-slate-200 bg-white/10 hover:bg-white/15 border border-white/20 transition-all cursor-pointer"
-              >
-                Solicitar Afiliación
-              </button>
-            </div>
+            <span className="text-[11px] font-mono text-slate-400">
+              {lang === 'es' ? 'Sincronización BCV, P2P & BVC' : 'BCV, P2P & BVC Synchronization'}
+            </span>
           </div>
 
-          {/* Right Column: CRM Fast Stats Cards */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            {CRM_STATS.map((stat, idx) => (
-              <div
+          {/* Grid de Índices */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 pt-1">
+            {FINANCIAL_INDICES.map((item, idx) => (
+              <div 
                 key={idx}
-                className="p-5 rounded-2xl bg-gradient-to-b from-slate-900/90 to-[#0F1A3A]/90 border border-slate-700/70 backdrop-blur-md shadow-lg"
+                className="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 flex flex-col justify-between hover:border-blue-500/50 transition-colors"
               >
-                <div className="text-xs text-slate-400 font-medium mb-1">{stat.label}</div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{stat.value}</div>
-                <div className="mt-2 text-[11px] font-semibold text-emerald-400">
-                  {stat.change}
+                <div className="flex items-center justify-between text-[10px] text-slate-400 font-medium">
+                  <span className="truncate">{item.sym}</span>
+                  <span className="text-[9px] px-1 rounded bg-slate-800 text-slate-300">{item.source}</span>
+                </div>
+                <div className="text-xs font-bold text-white font-mono mt-1">
+                  {item.val}
+                </div>
+                <div className={`text-[10px] font-mono font-semibold mt-0.5 ${item.isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  {item.change}
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </div>
 
-        {/* INTERACTIVE CRM UI MOCKUP */}
-        <div className="mt-6 rounded-3xl bg-slate-950/95 border border-slate-700/80 shadow-2xl overflow-hidden backdrop-blur-xl">
-
-          {/* Mockup Top Window Bar */}
-          <div className="bg-[#0e172e] px-4 sm:px-6 py-3.5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-              </div>
-              <div className="h-4 w-[1px] bg-slate-700 mx-1" />
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                <span className="px-2 py-0.5 rounded bg-blue-600/30 text-blue-400 border border-blue-500/30">
-                  OIKONOMOS CRM v4.2
-                </span>
-                <span className="text-slate-400 hidden sm:inline">• Portal de Afiliados Certificados</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700">
-                <span className="text-slate-400">Usuario: </span>
-                <span className="font-bold text-white">afiliado@oikonomos.global</span>
-              </div>
-              <button
-                onClick={onOpenLoginModal}
-                className="text-xs text-amber-400 hover:text-amber-300 underline font-medium"
-              >
-                Cambiar sesión
-              </button>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Encabezado Principal */}
+        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-900/40 border border-blue-700/60 text-blue-300 text-xs font-semibold uppercase tracking-wider">
+            {lang === 'es' ? 'Inteligencia Financiera & Gestión de Activos' : 'Financial Intelligence & Asset Management'}
           </div>
 
-          {/* Mockup Subheader with Interactive Tabs */}
-          <div className="bg-[#111c38] px-4 sm:px-6 py-3 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
-            {/* Tabs */}
-            <div className="flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
-              <button
-                onClick={() => setActiveTab('resumen')}
-                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'resumen'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-                  }`}
-              >
-                Resumen Ejecutivo
-              </button>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            {lang === 'es' ? 'Calculadora y Convertidor ' : 'Calculator and Converter '}
+            <span className="text-blue-400">
+              {lang === 'es' ? 'Multi-Mercado' : 'Multi-Market'}
+            </span>
+          </h2>
 
-              <button
-                onClick={() => setActiveTab('casos')}
-                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'casos'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-                  }`}
-              >
-                Mis Casos (4 Activos)
-              </button>
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+            {lang === 'es' 
+              ? 'Herramienta de precisión financiera de Oikonomos Capital que calcula en tiempo real la tasa oficial BCV, la cotización P2P y la brecha cambiaria (spread) para optimizar la toma de decisiones corporativas.'
+              : 'Oikonomos Capital precision financial tool calculating official BCV rates, P2P market prices, and exchange spreads in real time to optimize corporate decision-making.'}
+          </p>
+        </div>
 
-              <button
-                onClick={() => setActiveTab('afiliados')}
-                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                  activeTab === 'afiliados'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-                }`}
-              >
-                Red de Afiliados y Comisiones
-              </button>
-            </div>
-
-            {/* Quick Demo Status Indicator */}
-            <div className="flex items-center gap-3 text-xs">
-              <span className="text-slate-400">Modo de Demostración:</span>
-              <span className="flex items-center gap-1 text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                Sincronizado
+        {/* Sección Central: Calculadora / Convertidor y Panel de Spread */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
+          
+          {/* Columna Izquierda: Calculadora Interactiva de Oikonomos Capital */}
+          <div className="lg:col-span-7 bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl relative">
+            <div className="flex items-center justify-between pb-5 border-b border-slate-800 mb-6">
+              <div>
+                <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider block">
+                  {lang === 'es' ? 'Convertidor Inteligente' : 'Smart Converter'}
+                </span>
+                <h3 className="text-xl font-bold text-white">
+                  {lang === 'es' ? 'Simulador de Conversión y Reposición' : 'Conversion & Replacement Simulator'}
+                </h3>
+              </div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/80 text-emerald-400 text-xs font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                {lang === 'es' ? 'Tasas del Día' : 'Daily Rates'}
               </span>
             </div>
-          </div>
 
-          {/* Mockup Tab Content Area */}
-          <div className="p-4 sm:p-6 lg:p-8 bg-[#090f21]">
+            <div className="space-y-5">
+              {/* Monto a Convertir */}
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  {lang === 'es' ? 'Monto a Convertir:' : 'Amount to Convert:'}
+                </label>
+                <div className="flex rounded-2xl bg-slate-950 border border-slate-800 p-1.5 focus-within:border-blue-500 transition-colors">
+                  <input
+                    type="number"
+                    min="1"
+                    step="any"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    className="w-full bg-transparent px-4 py-2.5 text-lg sm:text-xl font-bold font-mono text-white placeholder-slate-500 focus:outline-none"
+                    placeholder="100"
+                  />
+                  <select
+                    value={selectedCurrency}
+                    onChange={(e) => setSelectedCurrency(e.target.value)}
+                    className="bg-slate-900 text-white font-bold text-sm px-4 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer"
+                  >
+                    <option value="USD">USD (Dólar)</option>
+                    <option value="USDT">USDT (Tether)</option>
+                    <option value="EUR">EUR (Euro)</option>
+                    <option value="BTC">BTC (Bitcoin)</option>
+                    <option value="VES">VES (Bolívares)</option>
+                  </select>
+                </div>
+              </div>
 
-            {/* TAB 1: RESUMEN EJECUTIVO */}
-            {activeTab === 'resumen' && (
-              <div className="space-y-6 animate-in fade-in duration-200">
-                {/* 4 Mini Metrics Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div className="bg-[#121c38] p-4 rounded-xl border border-slate-800">
-                    <div className="text-xs text-slate-400">
-                      Expedientes en Curso
-                    </div>
-                    <div className="text-2xl font-bold text-white mt-1">12 Casos</div>
-                    <div className="text-[11px] text-emerald-400 mt-1">
-                      3 entregables esta semana
-                    </div>
+              {/* Botón de Invertir (Swap) */}
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={handleSwap}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all cursor-pointer shadow-sm"
+                >
+                  <ArrowLeftRight className="w-3.5 h-3.5 text-blue-400" />
+                  <span>{lang === 'es' ? 'Invertir dirección de cálculo' : 'Invert calculation direction'}</span>
+                </button>
+              </div>
+
+              {/* Resultados en Cuadrícula (BCV vs P2P) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                {/* Cuadro Tasa Oficial BCV */}
+                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-slate-400 uppercase">
+                      {lang === 'es' ? 'Tasa Oficial BCV' : 'Official BCV Rate'}
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-blue-900/40 text-blue-300 font-mono">
+                      Oficial
+                    </span>
                   </div>
-
-                  <div className="bg-[#121c38] p-4 rounded-xl border border-slate-800">
-                    <div className="text-xs text-slate-400">
-                      Valor de Cartera Supervisada
-                    </div>
-                    <div className="text-2xl font-bold text-white mt-1">$1.84M USD</div>
-                    <div className="text-[11px] text-slate-400 mt-1">
-                      Distribuido en 7 consultorías
-                    </div>
+                  <div className="text-2xl font-black font-mono text-white">
+                    {selectedCurrency === 'VES' ? `$ ${resultBCV} USD` : `Bs. ${resultBCV}`}
                   </div>
-
-                  <div className="bg-[#121c38] p-4 rounded-xl border border-slate-800">
-                    <div className="text-xs text-slate-400">
-                      Comisiones Acumuladas
-                    </div>
-                    <div className="text-2xl font-bold text-emerald-400 mt-1">$24,920 USD</div>
-                    <div className="text-[11px] text-emerald-300 mt-1">
-                      Liquidación próxima: 30 de mes
-                    </div>
-                  </div>
-
-                  <div className="bg-[#121c38] p-4 rounded-xl border border-slate-800">
-                    <div className="text-xs text-slate-400">
-                      SLA de Dictamen
-                    </div>
-                    <div className="text-2xl font-bold text-white mt-1">1.8 hrs prom.</div>
-                    <div className="text-[11px] text-blue-400 mt-1">
-                      100% dentro del estándar
-                    </div>
+                  <div className="text-[11px] text-slate-400 font-mono">
+                    {selectedCurrency === 'VES' 
+                      ? `Tasa: Bs. ${rates.USD.bcv}` 
+                      : `1 ${selectedCurrency} = Bs. ${rates[selectedCurrency as keyof typeof rates]?.bcv || rates.USD.bcv}`}
                   </div>
                 </div>
 
-                {/* Dashboard Chart Mockup & Live Feed */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                  {/* Chart Representation */}
-                  <div className="lg:col-span-8 bg-[#121c38] p-5 rounded-2xl border border-slate-800">
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <h4 className="text-sm font-bold text-white">Rendimiento Operativo y Avance por Área</h4>
-                        <p className="text-xs text-slate-400">Distribución de horas técnicas y consultorías resueltas</p>
-                      </div>
-                      <span className="text-xs bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">Últimos 6 Meses</span>
-                    </div>
-
-                    {/* Bar visualization */}
-                    <div className="space-y-3.5 pt-2">
-                      <div>
-                        <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Legal y Blindaje Contractual</span>
-                          <span className="font-semibold text-blue-400">94% resuelto</span>
-                        </div>
-                        <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
-                          <div className="bg-gradient-to-r from-blue-600 to-indigo-500 h-full w-[94%]" />
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Agropecuaria y Costos de Cosecha</span>
-                          <span className="font-semibold text-emerald-400">88% resuelto</span>
-                        </div>
-                        <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
-                          <div className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full w-[88%]" />
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Contable y Auditoría Fiscal</span>
-                          <span className="font-semibold text-amber-400">91% resuelto</span>
-                        </div>
-                        <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
-                          <div className="bg-gradient-to-r from-amber-500 to-orange-400 h-full w-[91%]" />
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span>Consultoría Ambiental y Certificaciones ESG</span>
-                          <span className="font-semibold text-teal-400">82% resuelto</span>
-                        </div>
-                        <div className="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
-                          <div className="bg-gradient-to-r from-teal-500 to-cyan-400 h-full w-[82%]" />
-                        </div>
-                      </div>
-                    </div>
+                {/* Cuadro Mercado P2P / Paralelo */}
+                <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-slate-400 uppercase">
+                      {lang === 'es' ? 'Mercado P2P / Paralelo' : 'P2P / Market Rate'}
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-300 font-mono">
+                      Mercado
+                    </span>
                   </div>
-
-                  {/* Activity stream right */}
-                  <div className="lg:col-span-4 bg-[#121c38] p-5 rounded-2xl border border-slate-800 space-y-3">
-                    <h4 className="text-sm font-bold text-white flex items-center justify-between">
-                      <span>Notificaciones del CRM</span>
-                      <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                    </h4>
-
-                    <div className="space-y-3 pt-1 text-xs">
-                      <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80">
-                        <div className="font-semibold text-white">Dictamen Legal Aprobado</div>
-                        <div className="text-slate-400 mt-0.5">Expediente #LG-3021 subió el informe final de compliance.</div>
-                        <div className="text-[10px] text-blue-400 mt-1">Hace 25 min</div>
-                      </div>
-
-                      <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80">
-                        <div className="font-semibold text-white">Nuevo Cliente Vinculado</div>
-                        <div className="text-slate-400 mt-0.5">Tu enlace de afiliado registró a Agrícola Los Álamos.</div>
-                        <div className="text-[10px] text-emerald-400 mt-1">Hace 2 horas</div>
-                      </div>
-
-                      <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800/80">
-                        <div className="font-semibold text-white">Comisión Liquidada</div>
-                        <div className="text-slate-400 mt-0.5">Transferencia de $3,450 USD confirmada en cuenta.</div>
-                        <div className="text-[10px] text-amber-400 mt-1">Ayer 18:30</div>
-                      </div>
-                    </div>
+                  <div className="text-2xl font-black font-mono text-white">
+                    {selectedCurrency === 'VES' ? `$ ${resultP2P} USD` : `Bs. ${resultP2P}`}
+                  </div>
+                  <div className="text-[11px] text-slate-400 font-mono">
+                    {selectedCurrency === 'VES' 
+                      ? `Tasa: Bs. ${rates.USD.p2p}` 
+                      : `1 ${selectedCurrency} = Bs. ${rates[selectedCurrency as keyof typeof rates]?.p2p || rates.USD.p2p}`}
                   </div>
                 </div>
               </div>
-            )}
 
-            {/* TAB 2: MIS CASOS */}
-            {activeTab === 'casos' && (
-              <div className="space-y-4 animate-in fade-in duration-200">
-                {/* Search & Filter Bar */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pb-2">
-                  <div className="relative w-full sm:w-80">
-                    <input
-                      type="text"
-                      value={caseFilter}
-                      onChange={(e) => setCaseFilter(e.target.value)}
-                      placeholder="Filtrar por cliente o área..."
-                      className="w-full px-4 py-2 bg-slate-900 border border-slate-700/80 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
-                    />
+              {/* Caja de Spread Cambiario */}
+              <div className="p-4 rounded-2xl bg-blue-950/40 border border-blue-800/60 flex items-center justify-between">
+                <div>
+                  <div className="text-xs font-bold text-slate-300">
+                    {lang === 'es' ? 'Diferencial Cambiario (Spread):' : 'Exchange Spread:'}
                   </div>
-                  <div className="text-xs text-slate-400">
-                    Mostrando {filteredCases.length} expedientes activos
+                  <div className="text-[11px] text-slate-400 font-mono">
+                    {lang === 'es' ? `Brecha nominal: Bs. ${spreadNominal} por dólar` : `Nominal gap: Bs. ${spreadNominal} per dollar`}
                   </div>
                 </div>
-
-                {/* Table */}
-                <div className="overflow-x-auto rounded-xl border border-slate-800 bg-[#121c38]">
-                  <table className="w-full text-left text-xs">
-                    <thead className="bg-slate-900/80 text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-800">
-                      <tr>
-                        <th className="py-3 px-4">ID Expediente</th>
-                        <th className="py-3 px-4">Cliente / Razón Social</th>
-                        <th className="py-3 px-4">Áreas Involucradas</th>
-                        <th className="py-3 px-4">Progreso</th>
-                        <th className="py-3 px-4">Consultor Líder</th>
-                        <th className="py-3 px-4">Estatus</th>
-                        <th className="py-3 px-4 text-right">Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-800/60 text-slate-300">
-                      {filteredCases.map((cs) => (
-                        <tr key={cs.id} className="hover:bg-slate-800/40 transition-colors">
-                          <td className="py-3.5 px-4 font-mono font-bold text-blue-400">{cs.id}</td>
-                          <td className="py-3.5 px-4 font-semibold text-white">{cs.client}</td>
-                          <td className="py-3.5 px-4 text-slate-300">{cs.area}</td>
-                          <td className="py-3.5 px-4">
-                            <div className="flex items-center gap-2">
-                              <div className="w-20 bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                                <div className="bg-blue-500 h-full" style={{ width: `${cs.progress}%` }} />
-                              </div>
-                              <span className="font-mono text-[11px] text-slate-400">{cs.progress}%</span>
-                            </div>
-                          </td>
-                          <td className="py-3.5 px-4 text-slate-300">{cs.lead}</td>
-                          <td className="py-3.5 px-4">
-                            <span className={`px-2.5 py-1 rounded-md text-[11px] font-semibold border ${cs.statusColor}`}>
-                              {cs.status}
-                            </span>
-                          </td>
-                          <td className="py-3.5 px-4 text-right">
-                            <button
-                              onClick={() => alert(`Abriendo expediente cifrado ${cs.id} en el visualizador corporativo OIKONOMOS.`)}
-                              className="px-2.5 py-1 bg-slate-800 hover:bg-blue-600 text-slate-200 hover:text-white rounded-md text-[11px] font-medium transition-colors cursor-pointer"
-                            >
-                              Ver Bitácora
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="text-right">
+                  <span className="inline-block px-3 py-1 rounded-xl bg-blue-600 text-white font-mono font-bold text-sm shadow-sm">
+                    +{spreadPercentage}%
+                  </span>
                 </div>
               </div>
-            )}
 
-            {/* TAB 3: AFILIADOS Y COMISIONES */}
-            {activeTab === 'afiliados' && (
-              <div className="space-y-6 animate-in fade-in duration-200">
-                {/* Affiliate Share Link Banner */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-950 via-[#101b3d] to-indigo-950 border border-blue-800/60 flex flex-col md:flex-row items-center justify-between gap-4">
-                  <div className="space-y-1 text-center md:text-left">
-                    <div className="text-xs font-bold text-amber-400 uppercase tracking-wider">
-                      Tu Enlace de Afiliado Exclusivo
-                    </div>
-                    <div className="text-sm font-semibold text-white">
-                      Comparte este enlace para asignar prospectos automáticamente a tu código de comisiones.
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 w-full md:w-auto">
-                    <div className="bg-slate-900 border border-slate-700 px-3 py-2 rounded-xl text-xs font-mono text-slate-300 truncate max-w-xs select-all">
-                      {referralLink}
-                    </div>
-                    <button
-                      onClick={handleCopyLink}
-                      className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap"
-                    >
-                      {copiedLink ? '¡Copiado!' : 'Copiar'}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Sub-Affiliate Network Table */}
-                <div className="space-y-3">
-                  <h4 className="text-sm font-bold text-white">Desglose de Aliados y Comisiones Directas</h4>
-                  <div className="overflow-x-auto rounded-xl border border-slate-800 bg-[#121c38]">
-                    <table className="w-full text-left text-xs">
-                      <thead className="bg-slate-900/80 text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-800">
-                        <tr>
-                          <th className="py-3 px-4">Código Aliado</th>
-                          <th className="py-3 px-4">Nombre / Organización</th>
-                          <th className="py-3 px-4">Nivel de Alianza</th>
-                          <th className="py-3 px-4">Clientes Activos</th>
-                          <th className="py-3 px-4">Comisiones Generadas</th>
-                          <th className="py-3 px-4">Estatus</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-800/60 text-slate-300">
-                        {SAMPLE_AFFILIATES.map((af) => (
-                          <tr key={af.code} className="hover:bg-slate-800/40 transition-colors">
-                            <td className="py-3.5 px-4 font-mono font-bold text-amber-400">{af.code}</td>
-                            <td className="py-3.5 px-4 font-semibold text-white">{af.name}</td>
-                            <td className="py-3.5 px-4">
-                              <span className="px-2 py-0.5 rounded text-[11px] bg-blue-900/40 text-blue-300 border border-blue-700/50">
-                                {af.tier}
-                              </span>
-                            </td>
-                            <td className="py-3.5 px-4 font-mono">{af.activeClients} empresas</td>
-                            <td className="py-3.5 px-4 font-bold text-emerald-400">{af.commission}</td>
-                            <td className="py-3.5 px-4">
-                              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                                {af.status}
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              {/* Botón de Acción Directa */}
+              <div className="pt-2">
+                <button
+                  onClick={onOpenLoginModal}
+                  className="w-full py-3.5 px-6 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-600/30 transition-all cursor-pointer flex items-center justify-center gap-2"
+                >
+                  <span>{lang === 'es' ? 'Acceder al Portal OIKONOMOS CAPITAL' : 'Access OIKONOMOS CAPITAL Portal'}</span>
+                  <ExternalLink className="w-4 h-4" />
+                </button>
               </div>
-            )}
 
-          </div>
-
-          {/* Mockup Footer */}
-          <div className="bg-[#0e172e] px-4 sm:px-6 py-3 border-t border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span>Base de Datos Cifrada OIKONOMOS Core • Servidores Dedicados Tier IV</span>
             </div>
-            <div className="flex items-center gap-4">
+          </div>
+
+          {/* Columna Derecha: Análisis de Mercado & Fuentes Oficiales */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            <div className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
+              <div className="text-xs font-bold uppercase tracking-wider text-blue-400">
+                {lang === 'es' ? 'Fuentes Financieras Integradas' : 'Integrated Financial Sources'}
+              </div>
+              <h4 className="text-lg font-bold text-white">
+                {lang === 'es' ? 'Datos Oficiales y Mercados en Tiempo Real' : 'Official Data & Real-Time Markets'}
+              </h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {lang === 'es'
+                  ? 'Oikonomos Capital consolida cotizaciones multi-divisa oficiales, libros de órdenes P2P, mercado bursátil y precios del sector productivo para respaldar la estructuración corporativa.'
+                  : 'Oikonomos Capital consolidates official multi-currency rates, P2P order books, stock markets, and agricultural benchmarks to support corporate structuring.'}
+              </p>
+
+              <div className="space-y-3 pt-2">
+                <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+                  <Landmark className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-white">Banco Central de Venezuela (BCV)</div>
+                    <div className="text-[11px] text-slate-400 leading-normal">
+                      {lang === 'es' ? 'Tasas oficiales ponderadas de las mesas de cambio bancarias: USD, EUR, CNY, TRY y RUB.' : 'Weighted official exchange table rates: USD, EUR, CNY, TRY, and RUB.'}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+                  <Database className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-white">Binance P2P & Crypto Activos</div>
+                    <div className="text-[11px] text-slate-400 leading-normal">
+                      {lang === 'es' ? 'Libros de órdenes en vivo entre particulares en USDT, Bitcoin y principales stablecoins.' : 'Live peer-to-peer order books across USDT, Bitcoin, and leading stablecoins.'}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+                  <BarChart3 className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-white">Bolsa de Valores de Caracas (BVC)</div>
+                    <div className="text-[11px] text-slate-400 leading-normal">
+                      {lang === 'es' ? 'Renta variable nacional, Índice bursátil IBC y cotización de acciones bancarias e industriales.' : 'Domestic equities, IBC index, and banking/industrial stock price monitoring.'}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-white">Agropecuario & Materias Primas</div>
+                    <div className="text-[11px] text-slate-400 leading-normal">
+                      {lang === 'es' ? 'Monitoreo de precios referenciales de café, ganado, maíz y azúcar para el sector productivo.' : 'Benchmark price monitoring for coffee, cattle, corn, and sugar across the agro sector.'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Tarjeta de Asesoría Estratégica */}
+            <div className="p-6 rounded-3xl bg-blue-950/30 border border-blue-800/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <div className="text-sm font-bold text-white">
+                  {lang === 'es' ? '¿Deseas estructurar cobertura cambiaria?' : 'Looking to structure currency hedging?'}
+                </div>
+                <div className="text-xs text-slate-300">
+                  {lang === 'es' ? 'Nuestros consultores analizan tu flujo de caja operativo y fijan costos de reposición.' : 'Our consultants analyze your operational cash flow and model replacement costs.'}
+                </div>
+              </div>
               <button
-                onClick={onOpenLoginModal}
-                className="text-blue-400 hover:text-blue-300 font-semibold"
+                onClick={onRequestAffiliation}
+                className="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 transition-all flex-shrink-0 cursor-pointer shadow-md"
               >
-                Abrir en Pantalla Completa →
+                {lang === 'es' ? 'Consultar con Asesor' : 'Consult with Advisor'}
               </button>
             </div>
+
           </div>
 
         </div>
