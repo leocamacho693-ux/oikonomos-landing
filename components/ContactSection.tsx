@@ -287,43 +287,43 @@ export default function ContactSection({ selectedAreaFromParent, defaultProfile 
           {/* Right Column: Corporate Info */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Headquarters Card */}
+            {/* Sede Central Card */}
             <div className="bg-[#0B132B] text-white rounded-3xl p-7 border border-slate-800 shadow-xl space-y-5">
               <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-blue-500/15 border border-blue-400/20 text-blue-300 text-xs font-semibold">
-                {lang === 'es' ? 'Sede Central & Cobertura' : 'Headquarters & Reach'}
+                Sede Central & Cobertura
               </div>
 
-              <h3 className="text-xl font-bold text-white">
-                OIKONOMOS GLOBAL Headquarters
+              <h3 className="text-xl font-bold text-white tracking-tight">
+                OIKONOMOS GLOBAL
               </h3>
 
               <div className="space-y-4 text-sm text-slate-300">
                 <div className="space-y-0.5">
-                  <div className="text-xs font-bold text-amber-400 uppercase tracking-wider">{lang === 'es' ? 'Ubicación' : 'Location'}</div>
+                  <div className="text-xs font-bold text-blue-400 uppercase tracking-wider">{lang === 'es' ? 'Ubicación' : 'Location'}</div>
                   <div className="font-semibold text-white">{t('contact.hq_title')}</div>
-                  <div>{t('contact.hq_address')}</div>
+                  <div className="text-slate-300">{t('contact.hq_address')}</div>
                   <div className="text-xs text-slate-400">{lang === 'es' ? 'Atención presencial y virtual' : 'In-person and virtual attention'}</div>
                 </div>
 
                 <div className="space-y-0.5">
                   <div className="text-xs font-bold text-blue-400 uppercase tracking-wider">{lang === 'es' ? 'Horario' : 'Hours'}</div>
                   <div className="font-semibold text-white">{lang === 'es' ? 'Atención Ejecutiva' : 'Executive Hours'}</div>
-                  <div>{lang === 'es' ? 'Lunes a Viernes: 8:00 AM - 7:00 PM (GMT-4)' : 'Monday to Friday: 8:00 AM - 7:00 PM (GMT-4)'}</div>
-                  <div className="text-xs text-emerald-400">{lang === 'es' ? 'Soporte CRM para afiliados: 24/7' : 'CRM Support for affiliates: 24/7'}</div>
+                  <div className="text-slate-300">{lang === 'es' ? 'Lunes a Viernes: 8:00 AM - 7:00 PM (GMT-4)' : 'Monday to Friday: 8:00 AM - 7:00 PM (GMT-4)'}</div>
+                  <div className="text-xs text-blue-400 font-medium">{lang === 'es' ? 'Soporte CRM para afiliados: 24/7' : 'CRM Support for affiliates: 24/7'}</div>
                 </div>
 
                 <div className="space-y-0.5">
-                  <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider">{lang === 'es' ? 'Canales Directos' : 'Direct Channels'}</div>
-                  <div className="font-mono text-xs">contacto@oikonomos.global</div>
-                  <div className="font-mono text-xs text-amber-400">afiliados@oikonomos.global</div>
+                  <div className="text-xs font-bold text-blue-400 uppercase tracking-wider">{lang === 'es' ? 'Canales Directos' : 'Direct Channels'}</div>
+                  <div className="font-mono text-xs text-slate-200">contacto@oikonomos.global</div>
+                  <div className="font-mono text-xs text-slate-200">afiliados@oikonomos.global</div>
                 </div>
               </div>
 
               <div className="pt-4 border-t border-slate-800">
                 <div className="text-xs text-slate-400">
                   {lang === 'es' 
-                    ? <>¿Ya tienes asignado un consultor líder? Ingresa directamente con tu código de expediente al <a href="#ecosistema-crm" className="text-blue-400 underline font-semibold">Portal CRM</a>.</>
-                    : <>Already have an assigned lead consultant? Log in directly with your case code at the <a href="#ecosistema-crm" className="text-blue-400 underline font-semibold">CRM Portal</a>.</>}
+                    ? <>¿Ya tienes asignado un consultor líder? Ingresa directamente con tu código de expediente al <a href="#capital" className="text-blue-400 underline font-semibold">Portal CRM</a>.</>
+                    : <>Already have an assigned lead consultant? Log in directly with your case code at the <a href="#capital" className="text-blue-400 underline font-semibold">CRM Portal</a>.</>}
                 </div>
               </div>
             </div>
