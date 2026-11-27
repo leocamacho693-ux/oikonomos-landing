@@ -10,55 +10,49 @@ interface HowItWorksProps {
 
 const STEP_THEMES = [
   {
-    // Paso 01
-    topGradient: 'bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-500',
-    cardBg: 'bg-gradient-to-b from-blue-50/70 via-white to-indigo-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800',
-    border: 'border-blue-200/90 dark:border-slate-800 hover:border-blue-500',
-    badge: 'bg-gradient-to-r from-blue-700 to-indigo-600 text-white shadow-lg shadow-blue-600/25',
-    numGradient: 'from-blue-700 via-indigo-600 to-blue-400',
-    subtitle: 'text-blue-800 dark:text-blue-400',
+    // Paso 1: Azul Corporativo Sólido
+    topGradient: 'bg-blue-600',
+    cardBg: 'bg-white dark:bg-slate-900',
+    border: 'border-slate-200 dark:border-slate-800 hover:border-blue-500',
+    badge: 'bg-blue-600 text-white shadow-md shadow-blue-600/20',
+    subtitle: 'text-blue-700 dark:text-blue-400',
     titleHover: 'group-hover:text-blue-900 dark:group-hover:text-blue-300',
-    bulletPill: 'bg-white/90 dark:bg-slate-800 border border-blue-100/90 dark:border-slate-700 text-slate-800 dark:text-slate-200',
-    bulletDot: 'bg-gradient-to-r from-blue-600 to-indigo-600',
+    bulletPill: 'bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200',
+    bulletDot: 'bg-blue-600',
     footerText: 'text-blue-700 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-blue-300',
-    footerPhase: 'Fase 01 de 03',
+    footerPhase: 'Fase 1 de 3',
     nextAction: 'Siguiente fase →',
-    glow: 'hover:shadow-[0_20px_45px_-10px_rgba(30,58,138,0.22)]',
-    cornerGlow: 'from-blue-500/10 to-indigo-500/5',
+    glow: 'hover:shadow-xl',
   },
   {
-    // Paso 02
-    topGradient: 'bg-gradient-to-r from-sky-500 via-teal-500 to-emerald-500',
-    cardBg: 'bg-gradient-to-b from-teal-50/60 via-white to-sky-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800',
-    border: 'border-teal-200/90 dark:border-slate-800 hover:border-teal-500',
-    badge: 'bg-gradient-to-r from-teal-600 via-sky-600 to-blue-600 text-white shadow-lg shadow-teal-600/25',
-    numGradient: 'from-teal-600 via-sky-600 to-emerald-400',
-    subtitle: 'text-teal-800 dark:text-teal-400',
+    // Paso 2: Verde Azulado / Teal Sólido
+    topGradient: 'bg-teal-600',
+    cardBg: 'bg-white dark:bg-slate-900',
+    border: 'border-slate-200 dark:border-slate-800 hover:border-teal-500',
+    badge: 'bg-teal-600 text-white shadow-md shadow-teal-600/20',
+    subtitle: 'text-teal-700 dark:text-teal-400',
     titleHover: 'group-hover:text-teal-900 dark:group-hover:text-teal-300',
-    bulletPill: 'bg-white/90 dark:bg-slate-800 border border-teal-100/90 dark:border-slate-700 text-slate-800 dark:text-slate-200',
-    bulletDot: 'bg-gradient-to-r from-sky-500 to-teal-600',
+    bulletPill: 'bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200',
+    bulletDot: 'bg-teal-600',
     footerText: 'text-teal-700 dark:text-teal-400 group-hover:text-teal-900 dark:group-hover:text-teal-300',
-    footerPhase: 'Fase 02 de 03',
+    footerPhase: 'Fase 2 de 3',
     nextAction: 'Siguiente fase →',
-    glow: 'hover:shadow-[0_20px_45px_-10px_rgba(13,148,136,0.22)]',
-    cornerGlow: 'from-teal-500/10 to-sky-500/5',
+    glow: 'hover:shadow-xl',
   },
   {
-    // Paso 03
-    topGradient: 'bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600',
-    cardBg: 'bg-gradient-to-b from-amber-50/70 via-white to-orange-50/40 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800',
-    border: 'border-amber-200/90 dark:border-slate-800 hover:border-amber-500',
-    badge: 'bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-lg shadow-amber-500/25',
-    numGradient: 'from-amber-500 via-orange-500 to-amber-600',
-    subtitle: 'text-amber-800 dark:text-amber-400',
+    // Paso 3: Ámbar Sólido
+    topGradient: 'bg-amber-500',
+    cardBg: 'bg-white dark:bg-slate-900',
+    border: 'border-slate-200 dark:border-slate-800 hover:border-amber-500',
+    badge: 'bg-amber-600 text-white shadow-md shadow-amber-600/20',
+    subtitle: 'text-amber-700 dark:text-amber-400',
     titleHover: 'group-hover:text-amber-900 dark:group-hover:text-amber-300',
-    bulletPill: 'bg-white/90 dark:bg-slate-800 border border-amber-100/90 dark:border-slate-700 text-slate-800 dark:text-slate-200',
-    bulletDot: 'bg-gradient-to-r from-amber-500 to-orange-500',
+    bulletPill: 'bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200',
+    bulletDot: 'bg-amber-500',
     footerText: 'text-amber-700 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-amber-300',
-    footerPhase: 'Fase 03 de 03',
+    footerPhase: 'Fase 3 de 3',
     nextAction: 'Objetivo Cumplido ✓',
-    glow: 'hover:shadow-[0_20px_45px_-10px_rgba(217,119,6,0.22)]',
-    cornerGlow: 'from-amber-500/10 to-orange-500/5',
+    glow: 'hover:shadow-xl',
   },
 ];
 
@@ -90,8 +84,8 @@ export default function HowItWorks({ onStartWorkflow }: HowItWorksProps) {
 
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
             {lang === 'es' 
-              ? 'Un proceso ágil, transparente y estructurado para integrar a tu organización a nuestras soluciones o sumarte a nuestra red de aliados con trazabilidad digital absoluta.'
-              : 'An agile, transparent, and structured process to integrate your organization with our solutions or join our partner network with absolute digital traceability.'}
+              ? 'Un proceso ágil, transparente y estructurado para integrar a tu organización a nuestras soluciones o sumarte a nuestra red de aliados con trazabilidad digital absoluta'
+              : 'An agile, transparent, and structured process to integrate your organization with our solutions or join our partner network with absolute digital traceability'}
           </p>
         </div>
 
@@ -105,18 +99,15 @@ export default function HowItWorks({ onStartWorkflow }: HowItWorksProps) {
                 key={step.step}
                 className={`relative rounded-3xl ${theme.cardBg} border ${theme.border} ${theme.glow} flex flex-col justify-between transition-all duration-300 group overflow-hidden`}
               >
-                {/* Top line */}
-                <div className={`h-2 w-full ${theme.topGradient}`} />
+                {/* Top solid line */}
+                <div className={`h-2.5 w-full ${theme.topGradient}`} />
 
                 <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
                   <div>
-                    {/* Step indicator bar */}
-                    <div className="flex items-center justify-between mb-6">
-                      <span className={`text-xs font-extrabold tracking-wider uppercase ${theme.badge} px-3.5 py-1.5 rounded-xl`}>
-                        {lang === 'es' ? `PASO ${step.step}` : `STEP ${step.step}`}
-                      </span>
-                      <span className={`text-5xl font-black font-mono bg-gradient-to-br ${theme.numGradient} bg-clip-text text-transparent select-none`}>
-                        0{idx + 1}
+                    {/* Step indicator bar - Sin números 01, 02, 03 grandes */}
+                    <div className="flex items-center justify-between mb-5">
+                      <span className={`text-xs font-bold tracking-wider uppercase ${theme.badge} px-3.5 py-1.5 rounded-xl`}>
+                        {lang === 'es' ? `PASO ${idx + 1}` : `STEP ${idx + 1}`}
                       </span>
                     </div>
 
@@ -147,7 +138,7 @@ export default function HowItWorks({ onStartWorkflow }: HowItWorksProps) {
 
                   {/* Status footer row */}
                   <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-semibold">
-                    <span>{lang === 'es' ? theme.footerPhase : `Phase 0${idx+1} of 03`}</span>
+                    <span>{lang === 'es' ? theme.footerPhase : `Phase ${idx + 1} of 3`}</span>
                     <span className={`${theme.footerText} font-bold transition-all`}>
                       {lang === 'es' ? theme.nextAction : (idx === 2 ? 'Objective Achieved ✓' : 'Next phase →')}
                     </span>
@@ -163,7 +154,7 @@ export default function HowItWorks({ onStartWorkflow }: HowItWorksProps) {
         <div className="mt-14 text-center">
           <button
             onClick={onStartWorkflow}
-            className="px-8 py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-[#1E3A8A] hover:bg-blue-900 shadow-xl shadow-blue-900/30 transition-all duration-300 cursor-pointer transform hover:-translate-y-0.5"
+            className="px-8 py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-xl shadow-blue-600/30 transition-all duration-300 cursor-pointer transform hover:-translate-y-0.5"
           >
             {lang === 'es' ? 'Iniciar Proceso de Diagnóstico o Afiliación' : 'Start Diagnostic or Affiliation Process'}
           </button>
