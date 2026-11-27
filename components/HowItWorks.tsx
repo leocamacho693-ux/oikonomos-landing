@@ -25,31 +25,31 @@ const STEP_THEMES = [
     glow: 'hover:shadow-xl',
   },
   {
-    // Paso 2: Índigo Ejecutivo Sólido (reemplaza al verde)
-    topGradient: 'bg-indigo-600',
+    // Paso 2: Azul Corporativo Sólido (todo azul, sin morado)
+    topGradient: 'bg-blue-600',
     cardBg: 'bg-white dark:bg-slate-900',
-    border: 'border-slate-200 dark:border-slate-800 hover:border-indigo-500',
-    badge: 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20',
-    subtitle: 'text-indigo-700 dark:text-indigo-400',
-    titleHover: 'group-hover:text-indigo-900 dark:group-hover:text-indigo-300',
+    border: 'border-slate-200 dark:border-slate-800 hover:border-blue-500',
+    badge: 'bg-blue-600 text-white shadow-md shadow-blue-600/20',
+    subtitle: 'text-blue-700 dark:text-blue-400',
+    titleHover: 'group-hover:text-blue-900 dark:group-hover:text-blue-300',
     bulletPill: 'bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200',
-    bulletDot: 'bg-indigo-600',
-    footerText: 'text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-indigo-300',
+    bulletDot: 'bg-blue-600',
+    footerText: 'text-blue-700 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-blue-300',
     footerPhase: 'Fase 2 de 3',
     nextAction: 'Siguiente fase →',
     glow: 'hover:shadow-xl',
   },
   {
-    // Paso 3: Azul Marino Corporativo Sólido (reemplaza al amarillo)
-    topGradient: 'bg-[#1E3A8A]',
+    // Paso 3: Azul Corporativo Sólido (todo azul)
+    topGradient: 'bg-blue-600',
     cardBg: 'bg-white dark:bg-slate-900',
-    border: 'border-slate-200 dark:border-slate-800 hover:border-blue-700',
-    badge: 'bg-[#1E3A8A] text-white shadow-md shadow-blue-900/20',
-    subtitle: 'text-blue-900 dark:text-blue-300',
-    titleHover: 'group-hover:text-blue-950 dark:group-hover:text-blue-200',
+    border: 'border-slate-200 dark:border-slate-800 hover:border-blue-500',
+    badge: 'bg-blue-600 text-white shadow-md shadow-blue-600/20',
+    subtitle: 'text-blue-700 dark:text-blue-400',
+    titleHover: 'group-hover:text-blue-900 dark:group-hover:text-blue-300',
     bulletPill: 'bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200',
-    bulletDot: 'bg-[#1E3A8A]',
-    footerText: 'text-blue-900 dark:text-blue-300 group-hover:text-blue-950 dark:group-hover:text-blue-200',
+    bulletDot: 'bg-blue-600',
+    footerText: 'text-blue-700 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-blue-300',
     footerPhase: 'Fase 3 de 3',
     nextAction: 'Objetivo Cumplido ✓',
     glow: 'hover:shadow-xl',
@@ -64,7 +64,7 @@ export default function HowItWorks({ onStartWorkflow }: HowItWorksProps) {
       
       {/* Dynamic ambient color meshes */}
       <div className="absolute top-10 left-10 w-96 h-96 bg-blue-200/40 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-indigo-200/35 dark:bg-indigo-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-blue-200/35 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-0" />
       <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-blue-300/30 dark:bg-blue-800/10 rounded-full blur-3xl pointer-events-none -z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
