@@ -65,7 +65,7 @@
 .animate-ticker {
   display: inline-flex;
   white-space: nowrap;
-  animation: tickerScroll 35s linear infinite;
+  animation: tickerScroll 70s linear infinite;
   will-change: transform;
 }
 
