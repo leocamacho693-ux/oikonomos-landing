@@ -9,7 +9,7 @@ interface CrmSectionProps {
   onRequestAffiliation: () => void;
 }
 
-// Cotizaciones e Índices en Vivo de OIKONOMOS CAPITAL
+// Cotizaciones e Índices en Vivo de OIKONOMOS CAPITAL & Mercados Bursátiles
 const FINANCIAL_INDICES = [
   { sym: 'USD / BCV', val: 'Bs. 48.24', change: '+0.12%', isUp: true },
   { sym: 'USD / P2P', val: 'Bs. 57.80', change: '+0.35%', isUp: true },
@@ -17,7 +17,9 @@ const FINANCIAL_INDICES = [
   { sym: 'BTC / USDT', val: '$88,450.00', change: '+3.42%', isUp: true },
   { sym: 'ETH / USDT', val: '$3,120.50', change: '+2.15%', isUp: true },
   { sym: 'BVC Caracas (IBC)', val: '124,530 pts', change: '+1.10%', isUp: true },
-  { sym: 'Oro (Oz Troy)', val: '$2,684.20', change: '+0.45%', isUp: true },
+  { sym: 'Oro (XAU/USD)', val: '$2,684.20', change: '+0.45%', isUp: true },
+  { sym: 'Petróleo Brent', val: '$73.80', change: '-0.40%', isUp: false },
+  { sym: 'S&P 500', val: '5,980.20', change: '+0.65%', isUp: true },
   { sym: 'TRM Colombia', val: '$4,395 COP', change: '-0.20%', isUp: false },
 ];
 
@@ -80,26 +82,40 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
   };
 
   return (
-    <section id="ecosistema-crm" className="py-16 md:py-24 bg-[#F1F5F9] dark:bg-[#070D1E] text-slate-900 dark:text-slate-100 relative transition-colors duration-200">
+    <section id="ecosistema-crm" className="pt-0 pb-16 md:pb-24 bg-[#F1F5F9] dark:bg-[#070D1E] text-slate-900 dark:text-slate-100 relative transition-colors duration-200">
       
-      {/* 1. Ticker Bar en una sola línea continua como en el mercado (Estilo OIKONOMOS CAPITAL) */}
-      <div className="bg-[#0F172A] text-slate-200 py-2.5 overflow-hidden border-y border-slate-800 shadow-md mb-14 -mt-6 sm:-mt-10 select-none">
-        <div className="animate-ticker items-center gap-8">
-          {/* Doble render para bucle infinito continuo sin saltos */}
-          {[...FINANCIAL_INDICES, ...FINANCIAL_INDICES, ...FINANCIAL_INDICES].map((item, idx) => (
-            <div key={idx} className="inline-flex items-center gap-2 font-mono text-xs">
-              <span className="text-slate-400 font-semibold">{item.sym}</span>
-              <span className="text-white font-bold">{item.val}</span>
-              <span className={`text-[11px] font-semibold ${item.isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {item.isUp ? '▲' : '▼'} {item.change}
-              </span>
-              <span className="text-slate-600 mx-2">•</span>
-            </div>
-          ))}
+      {/* 1. Ticker Bursátil Adherido Directamente (Estilo Terminal Bursátil / Bolsa de Valores) */}
+      <div className="w-full bg-[#030712] border-b border-slate-800 text-slate-200 py-2 sm:py-2.5 overflow-hidden shadow-inner select-none relative z-20">
+        <div className="flex items-center">
+          {/* Badge Fijo de Indicadores en Vivo (Estilo Bolsa de Valores) */}
+          <div className="flex items-center gap-2 px-3 sm:px-4 py-0.5 bg-slate-900/95 border-r border-slate-800 shrink-0 z-10 shadow-md">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-widest text-slate-200 uppercase">
+              MERCADO EN VIVO
+            </span>
+          </div>
+
+          {/* Cinta Continua de Precios e Índices */}
+          <div className="animate-ticker items-center">
+            {/* Repeticiones para desplazamiento fluido continuo sin cortes */}
+            {[...FINANCIAL_INDICES, ...FINANCIAL_INDICES, ...FINANCIAL_INDICES, ...FINANCIAL_INDICES].map((item, idx) => (
+              <div key={idx} className="inline-flex items-center gap-2.5 font-mono text-xs px-4 border-r border-slate-800/80 whitespace-nowrap">
+                <span className="text-slate-400 font-semibold">{item.sym}</span>
+                <span className="text-white font-bold">{item.val}</span>
+                <span className={`text-[11px] font-semibold flex items-center gap-0.5 ${item.isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  <span>{item.isUp ? '▲' : '▼'}</span>
+                  <span>{item.change}</span>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 relative z-10">
         
         {/* Encabezado Principal en Fondo Claro Contrastado */}
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-14">

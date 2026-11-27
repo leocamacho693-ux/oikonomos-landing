@@ -112,9 +112,9 @@ export default function Home() {
           </div>
         )}
 
-        {/* 4. Ecosistema CRM */}
+        {/* 4. Ecosistema CRM con Cinta Bursátil Adherida sin espacio a la barra */}
         {activeTab === 'crm' && (
-          <div className="pt-16 sm:pt-20">
+          <div className="pt-[54px] sm:pt-[58px] md:pt-[64px]">
             <CrmSection
               onOpenLoginModal={handleOpenLoginModal}
               onRequestAffiliation={() => handleNavigateToContact(undefined, 'affiliate')}
