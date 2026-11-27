@@ -16,9 +16,9 @@ export const NAV_LINKS: NavLinkItem[] = [
   { id: 'inicio', name: 'Inicio', hash: '#inicio' },
   { id: 'identidad', name: 'Identidad', hash: '#identidad' },
   { id: 'consultoria', name: 'Áreas de Consultoría', hash: '#areas-consultoria' },
-  { id: 'crm', name: 'Ecosistema CRM', hash: '#ecosistema-crm' },
   { id: 'afiliados', name: 'Afiliados', hash: '#afiliados' },
   { id: 'contacto', name: 'Contacto', hash: '#contacto' },
+  { id: 'crm', name: 'Capital', hash: '#capital' },
 ];
 
 interface NavbarProps {
@@ -55,9 +55,9 @@ export default function Navbar({
     { id: 'inicio', name: t('nav.inicio'), hash: '#inicio' },
     { id: 'identidad', name: t('nav.identidad'), hash: '#identidad' },
     { id: 'consultoria', name: t('nav.consultoria'), hash: '#areas-consultoria' },
-    { id: 'crm', name: t('nav.crm'), hash: '#ecosistema-crm' },
     { id: 'afiliados', name: t('nav.afiliados'), hash: '#afiliados' },
     { id: 'contacto', name: t('nav.contacto'), hash: '#contacto' },
+    { id: 'crm', name: t('nav.crm'), hash: '#capital' },
   ];
 
   return (

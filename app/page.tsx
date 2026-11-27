@@ -25,7 +25,7 @@ export default function Home() {
         setActiveTab('identidad');
       } else if (hash === '#areas-consultoria' || hash === '#consultoria') {
         setActiveTab('consultoria');
-      } else if (hash === '#ecosistema-crm' || hash === '#crm') {
+      } else if (hash === '#capital' || hash === '#ecosistema-crm' || hash === '#crm') {
         setActiveTab('crm');
       } else if (hash === '#afiliados' || hash === '#modelo-afiliados') {
         setActiveTab('afiliados');

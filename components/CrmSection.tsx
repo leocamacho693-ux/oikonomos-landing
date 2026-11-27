@@ -82,7 +82,7 @@ export default function CrmSection({ onOpenLoginModal, onRequestAffiliation }: C
   };
 
   return (
-    <section id="ecosistema-crm" className="pt-0 pb-16 md:pb-24 bg-[#F1F5F9] dark:bg-[#070D1E] text-slate-900 dark:text-slate-100 relative transition-colors duration-200">
+    <section id="capital" className="pt-0 pb-16 md:pb-24 bg-[#F1F5F9] dark:bg-[#070D1E] text-slate-900 dark:text-slate-100 relative transition-colors duration-200">
       
       {/* 1. Ticker Bursátil Adherido Directamente (Estilo Terminal Bursátil / Bolsa de Valores) */}
       <div className="w-full bg-[#030712] border-b border-slate-800 text-slate-200 py-2 sm:py-2.5 overflow-hidden shadow-inner select-none relative z-20">

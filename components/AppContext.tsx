@@ -20,9 +20,9 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'nav.inicio': 'Inicio',
     'nav.identidad': 'Identidad',
     'nav.consultoria': 'Áreas de Consultoría',
-    'nav.crm': 'Ecosistema CRM',
     'nav.afiliados': 'Afiliados',
     'nav.contacto': 'Contacto',
+    'nav.crm': 'Capital',
     'nav.crm_access': 'Acceso CRM Afiliados',
     'nav.diagnostic': 'Agendar Diagnóstico',
 
@@ -114,9 +114,9 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'nav.inicio': 'Home',
     'nav.identidad': 'Identity',
     'nav.consultoria': 'Consulting Areas',
-    'nav.crm': 'CRM Ecosystem',
     'nav.afiliados': 'Affiliates',
     'nav.contacto': 'Contact',
+    'nav.crm': 'Capital',
     'nav.crm_access': 'Affiliate CRM Login',
     'nav.diagnostic': 'Book Diagnostic',
 
