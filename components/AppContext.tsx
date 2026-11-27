@@ -34,12 +34,12 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'hero.explore_services': 'Explorar Servicios',
     'hero.know_crm': 'Conocer el CRM para Afiliados',
     'hero.trust_1': '7 Áreas Multidisciplinarias',
-    'hero.trust_2': 'CRM Propietario en Tiempo Real',
-    'hero.trust_3': 'Confidencialidad y Blindaje Legal',
+    'hero.trust_2': 'CRM en Tiempo Real',
+    'hero.trust_3': 'Confidencialidad',
     'hero.stat_areas': 'Áreas de Consultoría Integral',
     'hero.stat_companies': 'Empresas y Afiliados Activos',
     'hero.stat_effectiveness': 'Índice de Efectividad Auditada',
-    'hero.stat_capital': 'Capital y Operaciones Estructuradas',
+    'hero.stat_capital': 'Dictámenes y Proyectos Ejecutados',
 
     // Identity
     'identity.badge': 'Identidad y Propósito Institucional',
@@ -128,12 +128,12 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'hero.explore_services': 'Explore Services',
     'hero.know_crm': 'Discover Affiliate CRM',
     'hero.trust_1': '7 Multidisciplinary Areas',
-    'hero.trust_2': 'Proprietary Real-Time CRM',
-    'hero.trust_3': 'Confidentiality & Legal Shielding',
+    'hero.trust_2': 'Real-Time CRM',
+    'hero.trust_3': 'Confidentiality',
     'hero.stat_areas': 'Core Consulting Disciplines',
     'hero.stat_companies': 'Active Businesses & Affiliates',
     'hero.stat_effectiveness': 'Audited Effectiveness Rate',
-    'hero.stat_capital': 'Structured Capital & Operations',
+    'hero.stat_capital': 'Executed Projects & Opinions',
 
     // Identity
     'identity.badge': 'Institutional Identity & Purpose',

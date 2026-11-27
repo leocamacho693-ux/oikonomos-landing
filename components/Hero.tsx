@@ -49,7 +49,7 @@ const CAROUSEL_SLIDES_ES: CarouselSlide[] = [
     subtitle: 'Estructuración financiera rural, optimización de costos de producción en campo, evaluaciones de impacto ambiental y planes de cumplimiento normativo sustentable',
   },
   {
-    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop',
     tag: 'Blindaje Jurídico',
     badge: 'Blindaje Jurídico Corporativo y Protección Fiscal',
     titlePrefix: 'Garantizamos la ',
@@ -88,7 +88,7 @@ const CAROUSEL_SLIDES_EN: CarouselSlide[] = [
     subtitle: 'Rural financial structuring, field production cost reduction, environmental impact assessments and sustainable regulatory compliance',
   },
   {
-    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop',
     tag: 'Legal Shielding',
     badge: 'Corporate Legal Shielding & Tax Protection',
     titlePrefix: 'Ensuring ',
@@ -284,7 +284,7 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
             </div>
 
             <div className="space-y-1 pt-2 sm:pt-0">
-              <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 tracking-tight">+$45M</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 tracking-tight">+350</div>
               <div className="text-xs font-medium text-slate-300">{t('hero.stat_capital')}</div>
             </div>
 
