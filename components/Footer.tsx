@@ -3,13 +3,15 @@
 import React from 'react';
 import { useApp } from './AppContext';
 
+const CRM_LOGIN_URL = process.env.NEXT_PUBLIC_CRM_URL || 'http://localhost:3001/login';
+
 interface FooterProps {
-  onOpenLoginModal: () => void;
+  onOpenLoginModal?: () => void;
   onSelectService?: (serviceId: string) => void;
   onSelectTab?: (tabId: any) => void;
 }
 
-export default function Footer({ onOpenLoginModal }: FooterProps) {
+export default function Footer({}: FooterProps) {
   const { t } = useApp();
   const currentYear = new Date().getFullYear();
 
@@ -44,12 +46,12 @@ export default function Footer({ onOpenLoginModal }: FooterProps) {
               <span className="font-mono text-blue-300 font-medium">contacto@oikonomos.global</span>
             </div>
 
-            <button
-              onClick={onOpenLoginModal}
-              className="px-4 py-1.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 border border-blue-400/30 transition-all cursor-pointer shadow-md shadow-blue-900/30"
+            <a
+              href={CRM_LOGIN_URL}
+              className="inline-flex items-center justify-center px-4 py-1.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 border border-blue-400/30 transition-all cursor-pointer shadow-md shadow-blue-900/30"
             >
               {t('footer.crm_btn')}
-            </button>
+            </a>
           </div>
 
         </div>

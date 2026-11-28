@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 import { useApp } from './AppContext';
 
+const CRM_LOGIN_URL = process.env.NEXT_PUBLIC_CRM_URL || 'http://localhost:3001/login';
+
 export type NavTabId = 'inicio' | 'identidad' | 'consultoria' | 'crm' | 'afiliados' | 'contacto';
 
 export interface NavLinkItem {
@@ -24,14 +26,13 @@ export const NAV_LINKS: NavLinkItem[] = [
 interface NavbarProps {
   activeTab: NavTabId;
   onSelectTab: (tabId: NavTabId) => void;
-  onOpenLoginModal: () => void;
+  onOpenLoginModal?: () => void;
   onNavigateToContact: (areaId?: string, profile?: 'consulting' | 'affiliate') => void;
 }
 
 export default function Navbar({
   activeTab,
   onSelectTab,
-  onOpenLoginModal,
   onNavigateToContact,
 }: NavbarProps) {
   const { lang, toggleLang, theme, toggleTheme, t } = useApp();
@@ -63,10 +64,10 @@ export default function Navbar({
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-200 ${
           isScrolled
-            ? 'bg-[#070E22]/95 backdrop-blur-md shadow-lg py-1.5 border-b border-slate-800'
-            : 'bg-[#070E22]/90 backdrop-blur-md py-2 border-b border-white/10'
+            ? 'bg-[#070E22]/95 shadow-lg py-1.5 border-b border-slate-800'
+            : 'bg-[#070E22]/95 py-2 border-b border-white/10'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -143,12 +144,12 @@ export default function Navbar({
               </button>
 
               {/* Secondary (Outline): Acceso CRM Afiliados */}
-              <button
-                onClick={onOpenLoginModal}
-                className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-blue-200 border border-blue-400/30 hover:border-blue-400 hover:bg-blue-900/30 transition-all duration-200 cursor-pointer shadow-sm"
+              <a
+                href={CRM_LOGIN_URL}
+                className="inline-flex items-center justify-center px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold text-blue-200 border border-blue-400/30 hover:border-blue-400 hover:bg-blue-900/30 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 {t('nav.crm_access')}
-              </button>
+              </a>
 
               {/* Primary (Solid): Agendar Diagnóstico */}
               <button
@@ -201,7 +202,7 @@ export default function Navbar({
         <div className="fixed inset-0 z-30 lg:hidden">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-slate-950/80 transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
@@ -231,15 +232,13 @@ export default function Navbar({
             </nav>
 
             <div className="pt-3 space-y-2.5 border-t border-slate-800">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenLoginModal();
-                }}
+              <a
+                href={CRM_LOGIN_URL}
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center py-3 px-4 rounded-xl text-sm font-semibold text-blue-200 border border-blue-400/30 bg-blue-900/30"
               >
                 {t('nav.crm_access')}
-              </button>
+              </a>
 
               <button
                 onClick={() => {

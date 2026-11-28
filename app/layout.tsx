@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { AppProvider } from '@/components/AppContext';
+import CarlosAssistant from '@/components/CarlosAssistant';
 
 export const metadata: Metadata = {
   title: 'OIKONOMOS GLOBAL | Consultoría Integral y Ecosistema CRM',
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body className="antialiased font-sans selection:bg-blue-600 selection:text-white transition-colors duration-200 bg-[#070E22] text-slate-100 dark:bg-[#070E22] dark:text-slate-100">
         <AppProvider>
           {children}
+          <CarlosAssistant />
         </AppProvider>
       </body>
     </html>

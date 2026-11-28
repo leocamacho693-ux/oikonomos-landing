@@ -35,10 +35,6 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
 
   return (
     <section id="identidad-corporativa" className="pt-14 pb-8 sm:pt-16 sm:pb-10 md:pt-18 md:pb-10 bg-white dark:bg-[#070E22] transition-colors duration-200 relative overflow-hidden">
-      {/* Background Subtle Corporate Geometry */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/70 dark:bg-blue-900/10 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-amber-50/50 dark:bg-amber-900/10 rounded-full blur-3xl pointer-events-none -z-0" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -58,7 +54,6 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
 
         {/* Sinopsis Highlight Box */}
         <div className="mb-14 rounded-3xl bg-[#0B132B] border border-slate-700/80 text-white p-7 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* Logo Oficial Centrado */}
           <div className="flex flex-col items-center justify-center mb-8 relative z-10 text-center">
@@ -83,7 +78,7 @@ export default function CorporateIdentity({ onExploreServices, onNavigateToConta
             </div>
 
             {/* Posicionamiento Callout Right */}
-            <div className="lg:col-span-4 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center lg:text-left space-y-3">
+            <div className="lg:col-span-4 bg-white/10 rounded-2xl p-6 border border-white/20 text-center lg:text-left space-y-3">
               <div className="text-xs font-bold uppercase tracking-wider text-blue-200">
                 {t('identity.positioning_label')}
               </div>

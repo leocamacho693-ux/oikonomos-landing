@@ -154,15 +154,12 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
           return (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
                 isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`}
             >
-              {/* Image with subtle slow zoom */}
               <div 
-                className={`w-full h-full bg-cover bg-center transition-transform duration-7000 ease-out ${
-                  isActive ? 'scale-105' : 'scale-100'
-                }`}
+                className="w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: `url('${slide.image}')` }}
               />
             </div>
@@ -182,7 +179,7 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
       {/* Flechas de Navegación del Carrusel (Izquierda / Derecha) */}
       <button
         onClick={handlePrevSlide}
-        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-blue-600/80 border border-white/20 text-white items-center justify-center backdrop-blur-md transition-all cursor-pointer shadow-lg group hover:scale-105"
+        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/55 hover:bg-blue-600/90 border border-white/20 text-white items-center justify-center transition-colors cursor-pointer shadow-lg group hover:scale-105"
         aria-label="Imagen anterior"
       >
         <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
@@ -190,7 +187,7 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
 
       <button
         onClick={handleNextSlide}
-        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-blue-600/80 border border-white/20 text-white items-center justify-center backdrop-blur-md transition-all cursor-pointer shadow-lg group hover:scale-105"
+        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/55 hover:bg-blue-600/90 border border-white/20 text-white items-center justify-center transition-colors cursor-pointer shadow-lg group hover:scale-105"
         aria-label="Siguiente imagen"
       >
         <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
@@ -221,7 +218,7 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
             }`}
           >
             {/* Badge Dinámico Superior */}
-            <div className="inline-flex items-center px-4 py-1 rounded-full bg-blue-950/70 border border-blue-400/40 text-blue-200 text-xs sm:text-sm font-semibold shadow-xl shadow-blue-950/60 backdrop-blur-md mb-2.5 hover:border-blue-400/70 transition-colors">
+            <div className="inline-flex items-center px-4 py-1 rounded-full bg-blue-950/90 border border-blue-400/40 text-blue-200 text-xs sm:text-sm font-semibold shadow-xl shadow-blue-950/60 mb-2.5 hover:border-blue-400/70 transition-colors">
               <span className="tracking-wide font-medium">{activeSlide.badge}</span>
             </div>
 
@@ -252,7 +249,7 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
 
           <button
             onClick={onExploreCrm}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl text-xs sm:text-sm md:text-base font-semibold text-slate-200 bg-black/40 hover:bg-black/60 border border-white/25 hover:border-white/40 backdrop-blur-md shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl text-xs sm:text-sm md:text-base font-semibold text-slate-200 bg-black/55 hover:bg-black/75 border border-white/25 hover:border-white/40 shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             {t('hero.know_crm')}
           </button>
@@ -268,7 +265,7 @@ export default function Hero({ onExploreServices, onExploreCrm, onOpenLoginModal
         </div>
 
         {/* Tarjeta Ejecutiva de Métricas Globales Centrada */}
-        <div className="mt-6 sm:mt-7 rounded-2xl bg-black/45 border border-white/15 backdrop-blur-xl p-4 sm:p-5 shadow-2xl max-w-4xl mx-auto">
+        <div className="mt-6 sm:mt-7 rounded-2xl bg-black/65 border border-white/15 p-4 sm:p-5 shadow-2xl max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
             
             <div className="space-y-1 pt-2 sm:pt-0">

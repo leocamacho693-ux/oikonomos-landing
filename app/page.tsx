@@ -10,6 +10,7 @@ import HowItWorks from '@/components/HowItWorks';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import CrmLoginModal from '@/components/CrmLoginModal';
+import SplashScreen from '@/components/SplashScreen';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<NavTabId>('inicio');
@@ -69,11 +70,12 @@ export default function Home() {
   };
 
   const handleExploreCrm = () => {
-    handleSelectTab('crm');
+    handleSelectTab('afiliados');
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-[#070E22] text-slate-800 dark:text-slate-100 transition-colors duration-200">
+      <SplashScreen durationMs={3000} />
       {/* Fixed Glassmorphism Navbar con pestañas interactivas */}
       <Navbar
         activeTab={activeTab}
